@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Multi Step</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <!-- FORM: HEAD SECTION -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- THIS SCRIPT NEEDS TO BE LOADED FIRST BEFORE wforms.js -->
+    <script type="text/javascript" data-for="FA__DOMContentLoadedEventDispatch" src="https://merceradvisors.tfaforms.net/js/FA__DOMContentLoadedEventDispatcher.js" defer></script>
+            <script type="text/javascript">
+        document.addEventListener("FA__DOMContentLoaded", function(){
+            const FORM_TIME_START = Math.floor((new Date).getTime()/1000);
+            let formElement = document.getElementById("tfa_0");
+            if (null === formElement) {
+                formElement = document.getElementById("0");
+            }
+            let appendJsTimerElement = function(){
+                let formTimeDiff = Math.floor((new Date).getTime()/1000) - FORM_TIME_START;
+                let cumulatedTimeElement = document.getElementById("tfa_dbCumulatedTime");
+                if (null !== cumulatedTimeElement) {
+                    let cumulatedTime = parseInt(cumulatedTimeElement.value);
+                    if (null !== cumulatedTime && cumulatedTime > 0) {
+                        formTimeDiff += cumulatedTime;
+                    }
+                }
+                let jsTimeInput = document.createElement("input");
+                jsTimeInput.setAttribute("type", "hidden");
+                jsTimeInput.setAttribute("value", formTimeDiff.toString());
+                jsTimeInput.setAttribute("name", "tfa_dbElapsedJsTime");
+                jsTimeInput.setAttribute("id", "tfa_dbElapsedJsTime");
+                jsTimeInput.setAttribute("autocomplete", "off");
+                if (null !== formElement) {
+                    formElement.appendChild(jsTimeInput);
+                }
+            };
+            if (null !== formElement) {
+                if(formElement.addEventListener){
+                    formElement.addEventListener('submit', appendJsTimerElement, false);
+                } else if(formElement.attachEvent){
+                    formElement.attachEvent('onsubmit', appendJsTimerElement);
+                }
+            }
+        });
+    </script>
 
+    <link href="https://merceradvisors.tfaforms.net/dist/form-builder/5.0.0/wforms-layout.css?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979" rel="stylesheet" type="text/css" />
+
+    <link href="https://merceradvisors.tfaforms.net/uploads/themes/theme-21.css" rel="stylesheet" type="text/css" />
+    <link href="https://merceradvisors.tfaforms.net/dist/form-builder/5.0.0/wforms-jsonly.css?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979" rel="alternate stylesheet" title="This stylesheet activated by javascript" type="text/css" />
+    <script type="text/javascript" src="https://merceradvisors.tfaforms.net/wForms/3.11/js/wforms.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
+    <script type="text/javascript">
+        wFORMS.behaviors.prefill.skip = false;
+    </script>
+        <script type="text/javascript" src="https://merceradvisors.tfaforms.net/wForms/3.11/js/localization-en_US.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
+
+
+  </head>
+  <body>
+    <main>
+      <!-- FORM: BODY SECTION -->
+<div class="wFormContainer" >
+    <div class="wFormHeader"></div>
+    <style type="text/css"></style><div class=""><div class="wForm" id="96-WRPR" data-language="en_US" dir="ltr">
+<div class="codesection" id="code-96"></div>
+<form method="post" action="https://merceradvisors.tfaforms.net/api_v2/workflow/processor" class="hintsBelow labelsAbove" id="96" role="form">
+<div class="wfPage" id="wfPgIndex-1"><div class="section pageSection" id="tfa_1">
+<h4 id="tfa_1-T">1</h4>
+<div class="htmlSection" id="tfa_11"><div class="htmlContent" id="tfa_11-HTML">Hello! We'd love to know a <b>few basics</b> about you first before we get started.</div></div>
+<div id="tfa_6" class="section inline group">
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_4-D"><div class="inputWrapper"><input type="text" id="tfa_4" name="tfa_4" value="" placeholder="First Name" title="First Name" class=""></div></div>
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_5-D"><div class="inputWrapper"><input type="text" id="tfa_5" name="tfa_5" value="" placeholder="Last Name" title="Last Name" class=""></div></div>
+</div>
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_7-D"><div class="inputWrapper"><input type="text" id="tfa_7" name="tfa_7" value="" placeholder="Email Address" title="Email" class=""></div></div>
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_8-D"><div class="inputWrapper"><input type="text" id="tfa_8" name="tfa_8" value="" placeholder="Phone Number" title="Phone Number" class=""></div></div>
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_9-D"><div class="inputWrapper"><input type="text" id="tfa_9" name="tfa_9" value="" placeholder="Zip Code (Optional)" title="Zip Code (optional)" class=""></div></div>
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_10-D"><div class="inputWrapper"><input type="text" id="tfa_10" name="tfa_10" value="" placeholder="Birth Year (Optional)" title="Birth Year (optional)" class=""></div></div>
+<div class="htmlSection" id="tfa_13"><div class="htmlContent" id="tfa_13-HTML">After this screen, we'll ask you some questions to better understand your needs.</div></div>
+</div></div>
+<div class="wfPage" id="wfPgIndex-2"><div class="section pageSection" id="tfa_24">
+<h4 id="tfa_24-T">2</h4>
+<div class="htmlSection" id="tfa_25"><div class="htmlContent" id="tfa_25-HTML">Thanks! <b>Who</b> are you seeking financial advice for?</div></div>
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_26-D" role="radiogroup" aria-labelledby="tfa_26-L" data-tfa-labelledby="-L tfa_26-L"><div class="inputWrapper"><span id="tfa_26" class="choices vertical "><span class="oneChoice"><input type="radio" value="tfa_27" class="" id="tfa_27" name="tfa_26" aria-labelledby="tfa_27-L" data-tfa-labelledby="tfa_26-L tfa_27-L" data-tfa-parent-id="tfa_26"><label class="label postField" id="tfa_27-L" for="tfa_27"><span class="input-radio-faux"></span>Just Me</label></span><span class="oneChoice"><input type="radio" value="tfa_28" class="" id="tfa_28" name="tfa_26" aria-labelledby="tfa_28-L" data-tfa-labelledby="tfa_26-L tfa_28-L" data-tfa-parent-id="tfa_26"><label class="label postField" id="tfa_28-L" for="tfa_28"><span class="input-radio-faux"></span>My Household</label></span><span class="oneChoice"><input type="radio" value="tfa_29" class="" id="tfa_29" name="tfa_26" aria-labelledby="tfa_29-L" data-tfa-labelledby="tfa_26-L tfa_29-L" data-tfa-parent-id="tfa_26"><label class="label postField" id="tfa_29-L" for="tfa_29"><span class="input-radio-faux"></span>My Parent(s)</label></span><span class="oneChoice"><input type="radio" value="tfa_30" class="" id="tfa_30" name="tfa_26" aria-labelledby="tfa_30-L" data-tfa-labelledby="tfa_26-L tfa_30-L" data-tfa-parent-id="tfa_26"><label class="label postField" id="tfa_30-L" for="tfa_30"><span class="input-radio-faux"></span>Someone Else</label></span></span></div></div>
+</div></div>
+<div class="wfPage" id="wfPgIndex-3"><div class="section pageSection" id="tfa_38">
+<h4 id="tfa_38-T">3</h4>
+<div class="htmlSection" id="tfa_39"><div class="htmlContent" id="tfa_39-HTML">What would you like your advisor to <b>help you with?</b> <i>(Select all that apply)</i></div></div>
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_40-D" role="group" aria-labelledby="tfa_40-L" data-tfa-labelledby="-L tfa_40-L"><div class="inputWrapper"><span id="tfa_40" class="choices vertical "><span class="oneChoice"><input type="checkbox" value="tfa_41" class="" id="tfa_41" name="tfa_41" aria-labelledby="tfa_41-L" data-tfa-labelledby="tfa_40-L tfa_41-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_41-L" for="tfa_41"><span class="input-checkbox-faux"></span>Financial Planning<div>lorem ipsum dolor eset</div></label></span><span class="oneChoice"><input type="checkbox" value="tfa_42" class="" id="tfa_42" name="tfa_42" aria-labelledby="tfa_42-L" data-tfa-labelledby="tfa_40-L tfa_42-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_42-L" for="tfa_42"><span class="input-checkbox-faux"></span>Strategic Tax Planning</label></span><span class="oneChoice"><input type="checkbox" value="tfa_43" class="" id="tfa_43" name="tfa_43" aria-labelledby="tfa_43-L" data-tfa-labelledby="tfa_40-L tfa_43-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_43-L" for="tfa_43"><span class="input-checkbox-faux"></span>Investment Management</label></span><span class="oneChoice"><input type="checkbox" value="tfa_44" class="" id="tfa_44" name="tfa_44" aria-labelledby="tfa_44-L" data-tfa-labelledby="tfa_40-L tfa_44-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_44-L" for="tfa_44"><span class="input-checkbox-faux"></span>Estate Planning</label></span><span class="oneChoice"><input type="checkbox" value="tfa_45" class="" id="tfa_45" name="tfa_45" aria-labelledby="tfa_45-L" data-tfa-labelledby="tfa_40-L tfa_45-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_45-L" for="tfa_45"><span class="input-checkbox-faux"></span>Retirement Planning</label></span><span class="oneChoice"><input type="checkbox" value="tfa_46" class="" id="tfa_46" name="tfa_46" aria-labelledby="tfa_46-L" data-tfa-labelledby="tfa_40-L tfa_46-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_46-L" for="tfa_46"><span class="input-checkbox-faux"></span>Other</label></span></span></div></div>
+</div></div>
+<div class="wfPage" id="wfPgIndex-4"><div class="section pageSection" id="tfa_56">
+<h4 id="tfa_56-T">4</h4>
+<div class="htmlSection" id="tfa_57"><div class="htmlContent" id="tfa_57-HTML">Last question! <b>Anything else</b> you'd like us to know before you speak with an advisor?</div></div>
+<div class="oneField field-container-D  labelsRemoved  " id="tfa_58-D"><div class="inputWrapper"><textarea id="tfa_58" name="tfa_58" placeholder="E.g. One financial problem you'd love to have solved right now..." title="Anything else you'd like us to know before you speak with an advisor?" class=""></textarea></div></div>
+</div></div>
+<div class="actions" id="96-A" data-contentid="submit_button"><input type="submit" data-label="Submit" class="primaryAction" id="submit_button" value="Submit"></div>
+<div style="clear:both"></div>
+<input type="hidden" value="96" name="tfa_dbFormId" id="tfa_dbFormId"><input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId"><input type="hidden" value="1232254f0ba043fb4cb013db9b129f22" name="tfa_dbControl" id="tfa_dbControl"><input type="hidden" value="" name="tfa_dbWorkflowSessionUuid" id="tfa_dbWorkflowSessionUuid"><input type="hidden" value="" name="tfa_noOverWriteFields" id="tfa_noOverWriteFields"><input type="hidden" value="2" name="tfa_dbVersionId" id="tfa_dbVersionId"><input type="hidden" value="" name="tfa_switchedoff" id="tfa_switchedoff">
+</form>
+</div></div><div class="wFormFooter"><p class="supportInfo"><br></p></div>
+  <p class="supportInfo" >
+      </p>
+ </div>
+
+<script
+    id="open-telemetry-script"
+    type="text/javascript"
+    src="https://merceradvisors.tfaforms.net/dist/open-telemetry/open-telemetry.3e6c1bedaa7fb4452dd0.js"
+    data-customer-id="125177"
+    data-exporter-url="https://us-east-1-otel.formassembly.com/v1/traces"
+    data-exporter-console="0"
+></script>
+<script src="https://merceradvisors.tfaforms.net/api_v2/sst/copy-and-paste"></script>
+    </main>
+	<script src="index.js"></script>
+  </body>
+</html>
