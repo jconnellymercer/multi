@@ -4,7 +4,7 @@
   "description": "test",
   "main": "server.js",
   "scripts": {
-    "dev": "browser-sync start --server public --files 'public/**/*'"
+    "dev": "node browser-sync.js"
   },
   "repository": {
     "type": "git",
