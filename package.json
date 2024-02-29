@@ -1,0 +1,22 @@
+{
+  "name": "mercer-multi-step-form",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "server.js",
+  "scripts": {
+    "dev": "browser-sync start --server public --files 'public/**/*'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jconnellymercer/multi.git"
+  },
+  "author": "Mercer Advisors",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jconnellymercer/multi/issues"
+  },
+  "homepage": "https://github.com/jconnellymercer/multi#readme",
+  "devDependencies": {
+    "browser-sync": "^3.0.2"
+  }
+}
