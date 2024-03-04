@@ -1,0 +1,211 @@
+:root {
+	--raspberry: #c00686;
+	--raspberry-highlight: #fff1fb;
+	--black: #454759;
+	--offwhite: #fcfcfc;
+	--grey-800: #cdcdcd;
+	--grey-700: #c5c5c5;
+	--grey-600: #a2a2a2;
+	--button-border-radius: 15px;
+	--button-font-size: 22px;
+	--button-padding: 1rem;
+}
+
+.mercerForm {
+	font-family: "Korolev", "Roboto", sans-serif;
+	font-size: 1.125rem;
+	line-height: 1;
+	font-weight: 500;
+}
+
+.mercerForm .wForm {
+	background: none;
+    color: var(--black);
+    border: none;
+	container-type: inline-size;
+	container-name: form;
+}
+
+.mercerForm .wForm form {
+	padding: 0;
+}
+
+.mercerForm .htmlSection {
+	margin-top: 0;
+	line-height: 1.2;
+}
+
+/* Form Header --------------------- */
+
+.formHeader {
+	display: flex;
+	flex-direction: column;
+}
+@container form (min-width:415px) {
+	.formHeader {
+		flex-direction: row;
+		align-items: flex-end;
+		justify-content: space-between;
+	}
+}
+
+.formTitle {
+	font-size: 36px;
+	font-weight: bold;
+	line-height: 1;
+}
+
+.formHeader--right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-top: 0.5rem;
+}
+@container form (min-width:415px) {
+	.formHeader--right {
+		align-items: flex-end;
+		margin-top: 0;
+	}
+}
+
+.formTimeEstimate {
+	font-size: 14px;
+	line-height: 1.15;
+}
+
+.formProgress {
+	display: flex;
+	align-items: center;
+	margin: 0.5rem 0;
+}
+.formProgressBar {
+	position: relative;
+	width: 84px;
+	height: 9px;
+	background-color: var(--grey-700);
+	margin-right: 1rem;
+}
+.formProgressBarInner {
+	background-color: var(--raspberry);
+	height: 100%;
+	width: 100%;
+	transform-origin: 0 0;
+	transition: transform 200ms ease-out;
+}
+
+/* Pages --------------------- */
+.mercerForm .pageSection {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+}
+
+.formPageHeader {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid var(--grey-600);
+	padding: 1.5rem 0;
+	margin: 0 0 0.5rem;
+}
+
+.formPageNumber {
+	border-radius: 50%;
+	border: 2px solid var(--black);
+	flex: 0 0 2.25rem;
+	font-weight: bold;
+	height: 2.25rem;
+	margin-right: 0.75rem;
+	position: relative;
+	text-align: center;
+	width: 2.25rem;
+}
+.formPageNumber span {
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Fields --------------------- */
+
+.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
+.mercerForm .wForm .inputWrapper textarea {
+	background: var(--offwhite);
+	border-radius: 6px;
+	border: 1px solid var(--grey-800);
+	box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,0.05);
+	color: var(--black);
+	font-size: 1.125rem;
+	font-weight: 500;
+	height: auto;
+	line-height: 1;
+	outline: 0;
+	padding: 1rem;
+	transition: all 200ms ease-out;
+	width: 100%;
+}
+.mercerForm .wForm .inputWrapper textarea {
+	line-height: 1.5;
+}
+.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):hover,
+.mercerForm .wForm .inputWrapper textarea:hover {
+	border-color: var(--black);
+}
+.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus,
+.mercerForm .wForm .inputWrapper textarea:focus {
+	border-color: var(--raspberry);
+}
+.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"])::placeholder,
+.mercerForm .wForm .inputWrapper textarea::placeholder {
+	color: #444759 !important;
+	transition: opacity 200ms ease-out;
+}
+.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus::placeholder,
+.mercerForm .wForm .inputWrapper textarea:focus::placeholder {
+	opacity: 0.4;
+}
+
+.mercerForm .inline.group {
+	display: flex;
+	column-gap: 1rem;
+}
+
+.mercerForm .wForm .inline.group .oneField {
+	flex: 1 1 100%;
+}
+
+/* Buttons --------------------- */
+
+.mercerForm .wfPagingButtons {
+	display: flex;
+	column-gap: 1rem;
+}
+
+.mercerForm .wfPagingButtons .wfPageNextButton, 
+.mercerForm .wfPagingButtons .wfPagePreviousButton {
+    -webkit-appearance: none;
+	font-weight: bold;
+	font-size: var(--button-font-size);
+    background-color: var(--raspberry);
+    color: #fff;
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
+    border: 2px solid var(--raspberry);
+	width: 100%;
+	outline: 0;
+	transition: all 200ms ease-out;
+	margin: 0;
+}
+
+.mercerForm .wfPagingButtons .wfPagePreviousButton {
+	color: var(--raspberry);
+    background-color: transparent;
+	border: 2px solid var(--raspberry);
+}
+
+.mercerForm .wfPagingButtons .wfPageNextButton:hover, 
+.mercerForm .wfPagingButtons .wfPagePreviousButton:hover {
+	background-color: var(--raspberry-highlight);
+	border: 2px solid var(--raspberry);
+}
