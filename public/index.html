@@ -9,6 +9,7 @@
 
     
     <!-- !!! WORDPRESS SITE RESOURCES - including here to replicate the WP environment as best as possible -->
+    <link rel="stylesheet" type="text/css" href="https://use.typekit.net/qsd2gqa.css">
     <link rel="stylesheet" id="hello-elementor-css" href="https://merceradvisstg.wpengine.com/wp-content/themes/hello-elementor/style.min.css?ver=3.0.1" media="all">
     <link rel="stylesheet" id="hello-elementor-theme-style-css" href="https://merceradvisstg.wpengine.com/wp-content/themes/hello-elementor/theme.min.css?ver=3.0.1" media="all">
     <link rel="stylesheet" id="hello-elementor-header-footer-css" href="https://merceradvisstg.wpengine.com/wp-content/themes/hello-elementor/header-footer.min.css?ver=3.0.1" media="all">
@@ -35,6 +36,7 @@
     <script src="https://merceradvisstg.wpengine.com/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.19.0" id="font-awesome-4-shim-js"></script>
     <!-- !!! END WORDPRESS SITE RESOURCES -->
 
+
     <script data-for="FA__DOMContentLoadedEventDispatch" src="https://merceradvisors.tfaforms.net/js/FA__DOMContentLoadedEventDispatcher.js" defer></script>
     <script>
         document.addEventListener("FA__DOMContentLoaded", (function() {
@@ -54,33 +56,32 @@
             null !== e && (e.addEventListener ? e.addEventListener("submit", n, !1) : e.attachEvent && e.attachEvent("onsubmit", n))
         }))
     </script>
-    <link href="https://merceradvisors.tfaforms.net/dist/form-builder/5.0.0/wforms-layout.css?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979" rel="stylesheet">
 
     <!-- !!! ALSO FROM WORDPRESS -->
     <link href="https://merceradvisstg.wpengine.com/wp-content/themes/hello-theme-child-master/css/fa-raspberry-gray-theme.min.css" rel="stylesheet" type="text/css">
     <!-- !!! END WORDPRESS -->
 
-    <!-- !!! Removing the FA theme -->
+    <!-- !!! Removing FA stuff -->
+    <!-- <link href="https://merceradvisors.tfaforms.net/dist/form-builder/5.0.0/wforms-layout.css?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979" rel="stylesheet"> -->
     <!-- <link href="https://merceradvisors.tfaforms.net/uploads/themes/theme-21.css" rel="stylesheet"> -->
+    <!-- <link href="https://merceradvisors.tfaforms.net/dist/form-builder/5.0.0/wforms-jsonly.css?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979" rel="alternate stylesheet" title="This stylesheet activated by javascript"> -->
     <!-- !!! -->
     
-    <link href="https://merceradvisors.tfaforms.net/dist/form-builder/5.0.0/wforms-jsonly.css?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979" rel="alternate stylesheet" title="This stylesheet activated by javascript">
     <script src="https://merceradvisors.tfaforms.net/wForms/3.11/js/wforms.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
-    <script>
-        window.wFORMS.behaviors.prefill.skip = !1
-    </script>
-
-    <!-- !!! Injecting our custom JS here -->
-    <script src="index.js" type="text/javascript"></script>
-    <!-- !!! -->
+    <script>console.log(window.wFORMS);</script>
 
     <script src="https://merceradvisors.tfaforms.net/wForms/3.11/js/localization-en_US.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
 </head>
 
-<body class="default wFormWebPage">
+<body class="default wFormWebPage" style="padding:2rem">
 
-    <div id="tfaContent">
-        <div class="wFormContainer">
+    <div id="tfaContent" style="max-width: 450px; margin: 0 auto">
+        <div class="wFormContainer mercerForm">
+
+            <!-- !!! Injecting our custom JS here -->
+            <script src="index.js" type="text/javascript"></script>
+            <!-- !!! -->
+
             <!-- !!! Injecting our custom CSS here -->
             <link href="style.css" rel="stylesheet">
             <!-- !!! -->
@@ -90,40 +91,59 @@
                     <div class="codesection" id="code-96"></div>
                     <form method="post" action="https://merceradvisors.tfaforms.net/api_v2/workflow/processor" class="hintsBelow labelsAbove" id="96" role="form">
                         
+                        <div class="formHeader">
+                            <div class="formTitle formHeader--left" role="heading">Contact Us</div>
+                            <div class="formHeader--right">
+                                <div class="formTimeEstimate">Estimated Time for Completion: 3 minutes</div>
+                                <div class="formProgress">
+                                    <div class="formProgressBar">
+                                        <div class="formProgressBarInner" style="transform:scaleX(0.143)"></div>
+                                    </div>
+                                    <div class="formProgressText">
+                                        Step <span class="formProgressPage">1</span> of 7
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="wfPage" id="wfPgIndex-1">
                             <div class="section pageSection" id="tfa_1">
-                                <h4 id="tfa_1-T">1</h4>
-                                <div class="htmlSection" id="tfa_11">
-                                    <div class="htmlContent" id="tfa_11-HTML">Hello! We'd love to get to know a little <b>about you</b> before getting started.</div>
+                                <div class="formPageHeader">
+                                    <div class="formPageNumber"><span>1</span></div>
+                                    <div class="htmlSection" id="tfa_11">
+                                        <div class="htmlContent" id="tfa_11-HTML">Hello! We'd love to get to know a little <b>about you</b> before getting started.</div>
+                                    </div>
                                 </div>
                                 <div id="tfa_6" class="section inline group">
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_4-D">
-                                        <div class="inputWrapper"><input id="tfa_4" name="tfa_4" placeholder="First Name" title="First Name"></div>
+                                        <div class="inputWrapper"><input id="tfa_4" name="tfa_4" placeholder="First Name" title="First Name" type="text"></div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_5-D">
-                                        <div class="inputWrapper"><input id="tfa_5" name="tfa_5" placeholder="Last Name" title="Last Name"></div>
+                                        <div class="inputWrapper"><input id="tfa_5" name="tfa_5" placeholder="Last Name" title="Last Name" type="text"></div>
                                     </div>
                                 </div>
                                 <div class="oneField field-container-D labelsRemoved" id="tfa_7-D">
-                                    <div class="inputWrapper"><input id="tfa_7" name="tfa_7" placeholder="Email Address" title="Email"></div>
+                                    <div class="inputWrapper"><input id="tfa_7" name="tfa_7" placeholder="Email Address" title="Email" type="email"></div>
                                 </div>
                                 <div class="oneField field-container-D labelsRemoved" id="tfa_8-D">
-                                    <div class="inputWrapper"><input id="tfa_8" name="tfa_8" placeholder="Phone Number" autoformat="###-###-####" title="Phone Number"></div>
+                                    <div class="inputWrapper"><input id="tfa_8" name="tfa_8" placeholder="Phone Number" autoformat="###-###-####" title="Phone Number" type="tel"></div>
                                 </div>
                                 <div class="oneField field-container-D labelsRemoved" id="tfa_9-D">
-                                    <div class="inputWrapper"><input id="tfa_9" name="tfa_9" placeholder="Zip Code (Optional)" title="Zip Code (optional)"></div>
+                                    <div class="inputWrapper"><input id="tfa_9" name="tfa_9" placeholder="Zip Code (Optional)" title="Zip Code (optional)" type="number"></div>
                                 </div>
                                 <div class="oneField field-container-D labelsRemoved" id="tfa_10-D">
-                                    <div class="inputWrapper"><input id="tfa_10" name="tfa_10" placeholder="Birth Year (Optional)" title="Birth Year (optional)"></div>
+                                    <div class="inputWrapper"><input id="tfa_10" name="tfa_10" placeholder="Birth Year (Optional)" title="Birth Year (optional)" type="number"></div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="wfPage" id="wfPgIndex-2">
                             <div class="section pageSection" id="tfa_24">
-                                <h4 id="tfa_24-T">2</h4>
-                                <div class="htmlSection" id="tfa_25">
-                                    <div class="htmlContent" id="tfa_25-HTML">Thanks! <b>Who</b>&nbsp;<span>needs financial advice?</span>&nbsp;(Optional)</div>
+                                <div class="pageHeader">
+                                    <div class="pageNumber">2</div>
+                                    <div class="htmlSection" id="tfa_25">
+                                        <div class="htmlContent" id="tfa_25-HTML">Thanks! <b>Who</b>&nbsp;<span>needs financial advice?</span>&nbsp;(Optional)</div>
+                                    </div>
                                 </div>
                                 <div class="oneField field-container-D labelsRemoved hintsBelow" id="tfa_26-D" role="radiogroup" aria-labelledby="tfa_26-L" data-tfa-labelledby="-L tfa_26-L">
                                     <div class="inputWrapper">
@@ -152,11 +172,13 @@
 
                         <div class="wfPage" id="wfPgIndex-3">
                             <div class="section pageSection" id="tfa_38">
-                                <h4 id="tfa_38-T">3</h4>
-                                <div class="htmlSection" id="tfa_39">
-                                    <div class="htmlContent" id="tfa_39-HTML">Great! Do you work with a <b>financial advisor</b> today? (Optional)</div>
+                                <div class="pageHeader">
+                                    <div class="pageNumber">3</div>
+                                    <div class="htmlSection" id="tfa_39">
+                                        <div class="htmlContent" id="tfa_39-HTML">Great! Do you work with a <b>financial advisor</b> today? (Optional)</div>
+                                    </div>
                                 </div>
-                                    <div class="oneField field-container-D labelsRemoved" id="tfa_40-D" role="radiogroup" aria-labelledby="tfa_40-L" data-tfa-labelledby="-L tfa_40-L">
+                                <div class="oneField field-container-D labelsRemoved" id="tfa_40-D" role="radiogroup" aria-labelledby="tfa_40-L" data-tfa-labelledby="-L tfa_40-L">
                                     <div class="inputWrapper"><span id="tfa_40" class="choices vertical"><span class="oneChoice"><input type="radio" value="tfa_107" id="tfa_107" name="tfa_40" aria-labelledby="tfa_107-L" data-tfa-labelledby="tfa_40-L tfa_107-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_107-L" for="tfa_107"><span class="input-radio-faux"></span><b>Yes, but need a change</b></label>
                                         </span><span class="oneChoice"><input type="radio" value="tfa_108" id="tfa_108" name="tfa_40" aria-labelledby="tfa_108-L" data-tfa-labelledby="tfa_40-L tfa_108-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_108-L" for="tfa_108"><span class="input-radio-faux"></span><b>Yes, but have too many</b></label>
                                         </span><span class="oneChoice"><input type="radio" value="tfa_109" id="tfa_109" name="tfa_40" aria-labelledby="tfa_109-L" data-tfa-labelledby="tfa_40-L tfa_109-L" data-tfa-parent-id="tfa_40"><label class="label postField" id="tfa_109-L" for="tfa_109"><span class="input-radio-faux"></span><b>No, but I had one</b></label>
@@ -170,9 +192,11 @@
 
                         <div class="wfPage" id="wfPgIndex-4">
                             <div class="section pageSection" id="tfa_56">
-                                <h4 id="tfa_56-T">4</h4>
-                                <div class="htmlSection" id="tfa_57">
-                                    <div class="htmlContent" id="tfa_57-HTML">What would you like your advisor to <b>help you with</b>? (Select all that apply) (Optional)</div>
+                                <div class="pageHeader">
+                                    <div class="pageNumber">4</div>
+                                    <div class="htmlSection" id="tfa_57">
+                                        <div class="htmlContent" id="tfa_57-HTML">What would you like your advisor to <b>help you with</b>? (Select all that apply) (Optional)</div>
+                                    </div>
                                 </div>
                                 <div class="oneField field-container-D labelsRemoved" id="tfa_59-D" role="group" aria-labelledby="tfa_59-L" data-tfa-labelledby="-L tfa_59-L">
                                     <div class="inputWrapper"><span id="tfa_59" class="choices vertical"><span class="oneChoice"><input type="checkbox" value="tfa_111" id="tfa_111" name="tfa_111" aria-labelledby="tfa_111-L" data-tfa-labelledby="tfa_59-L tfa_111-L" data-tfa-parent-id="tfa_59"><label class="label postField" id="tfa_111-L" for="tfa_111"><span class="input-checkbox-faux"></span><b>Financial Planning</b></label>
@@ -190,9 +214,11 @@
                         
                         <div class="wfPage" id="wfPgIndex-5">
                             <div class="section pageSection" id="tfa_76">
-                                <h4 id="tfa_76-T">5</h4>
-                                <div class="htmlSection" id="tfa_77">
-                                    <div class="htmlContent" id="tfa_77-HTML">Why are you looking for an <b>advisor</b> now? (Select all that apply) (Optional)</div>
+                                <div class="pageHeader">
+                                    <div class="pageNumber">5</div>
+                                    <div class="htmlSection" id="tfa_77">
+                                        <div class="htmlContent" id="tfa_77-HTML">Why are you looking for an <b>advisor</b> now? (Select all that apply) (Optional)</div>
+                                    </div>
                                 </div>
                                 <div id="tfa_129" class="section inline group">
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_78-D" role="group" aria-labelledby="tfa_78-L" data-tfa-labelledby="-L tfa_78-L">
@@ -212,9 +238,11 @@
                         
                         <div class="wfPage" id="wfPgIndex-6">
                             <div class="section pageSection" id="tfa_92">
-                                <h4 id="tfa_92-T">6</h4>
-                                <div class="htmlSection" id="tfa_93">
-                                    <div class="htmlContent" id="tfa_93-HTML">Almost there! <b>How much</b> do you have saved in cash and investments? (Optional)</div>
+                                <div class="pageHeader">
+                                    <div class="pageNumber">6</div>
+                                    <div class="htmlSection" id="tfa_93">
+                                        <div class="htmlContent" id="tfa_93-HTML">Almost there! <b>How much</b> do you have saved in cash and investments? (Optional)</div>
+                                    </div>
                                 </div>
                                 <div class="htmlSection" id="tfa_100">
                                     <div class="htmlContent" id="tfa_100-HTML">Retirement contributions, trust brokerages, etc.</div>
@@ -254,9 +282,11 @@
                         
                         <div class="wfPage" id="wfPgIndex-7">
                             <div class="section pageSection" id="tfa_103">
-                                <h4 id="tfa_103-T">7</h4>
-                                <div class="htmlSection" id="tfa_106">
-                                    <div class="htmlContent" id="tfa_106-HTML">Last question! <b>Anything else</b> you’d like us to know before you speak with an advisor? (Optional)</div>
+                                <div class="pageHeader">
+                                    <div class="pageNumber">7</div>
+                                    <div class="htmlSection" id="tfa_106">
+                                        <div class="htmlContent" id="tfa_106-HTML">Last question! <b>Anything else</b> you’d like us to know before you speak with an advisor? (Optional)</div>
+                                    </div>
                                 </div>
                                 <div class="oneField field-container-D labelsRemoved" id="tfa_104-D">
                                     <div class="inputWrapper"><textarea id="tfa_104" name="tfa_104" placeholder="For example, what is one financial problem that you’d like to have solved right now?" title="Edit this text"></textarea></div>
