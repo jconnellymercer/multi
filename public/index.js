@@ -33,15 +33,14 @@
 		constructor(target, setOptions) {
 			super(target, setOptions)
 
-			this.page = 0
+			this.pageIndex = 0
+			this.pageHeight = 0
 			this.loading = true
 			this.scrollY = window.scrollY
 			this.pages = this.form.querySelectorAll('.wfPage, .wfCurrentPage')
 			this.formProgress = new FormProgress(this.el.querySelector('.formProgress'), this.pages.length)
 
 			window.wFORMS.behaviors.paging.onPageChange = (page) => this.onPageChange(page)
-			window.wFORMS.behaviors.paging.onPagePrevious = (page) => this.onPagePrevious(page)
-			window.wFORMS.behaviors.paging.onPageNext = (page) => this.onPageNext(page)
 
 			window.addEventListener("scroll", Util.throttle(() => {
 				// counteracts FA's behavior which scrolls window 
@@ -51,31 +50,61 @@
 
 			setTimeout(() => {
 				// allow time for layout shift
-				this.setPageHeight()
-				this.loading = false;
-			}, 1000)
+				this.moveLastPageButtons()
+				this.initPages()
+				this.loading = false
+			}, 500)
+		}
+
+		moveLastPageButtons() {
+			const lastPage = this.pages[this.pages.length - 1]
+			const lastPageBtnContainer = this.form.querySelector('.last-page-previous-button')
+			const submitBtn = this.form.querySelector('[type="submit"]')
+			lastPageBtnContainer.appendChild(submitBtn)
+			lastPage.appendChild(lastPageBtnContainer)
 		}
 		
-		setPageHeight() {
-			let maxHeight = 0
-			this.pages.forEach( page => maxHeight = Math.max(maxHeight, page.offsetHeight ) )
-			this.pages.forEach( page => page.style.height = `${maxHeight}px` )
+		initPages() {
+			const maxHeight = this.pages.entries().reduce((maxHeight, page) => Math.max(maxHeight || 0, page[1].offsetHeight) )
+			this.pages.forEach( page => new Page(page, maxHeight) )
 		}
 		
 		onPageChange(page) {
 			window.scrollTo(0, this.scrollY);
-			this.page = parseInt( page.id.split('').reverse()[0] )
-			this.formProgress.set(this.page)
+			this.pageIndex = parseInt( page.id.split('').reverse()[0] )
+			this.formProgress.setPage(this.pageIndex)
+		}
+		
+	}
+
+	class Page {
+		constructor(el, height) {
+			this.el = el
+			this.el.style.height = `${height}px` 
+			
+			this.requiredInputs = []
+			this.el.querySelectorAll('input[required]').forEach( input => {
+				const { pattern, type, value } = input
+				this.requiredInputs.push({
+					el: input, pattern, type, value,
+					autoformat: input.getAttribute("autoformat"),
+				})
+			} )
+
+			if ( this.requiredInputs.length ) {
+				this.watchFields()
+			}
 		}
 
-		onPagePrevious(page) {
-			// this.page = this.page - 1
+		watchFields() {
+			this.requiredInputs.forEach( (input, i) => {
+				input.el.addEventListener("input", e => {
+					this.requiredInputs[i].value = e.target.value
+				})
+			} )
+
+			console.log(this.requiredInputs);
 		}
-		
-		onPageNext(page) {
-			// this.page = this.page + 1
-		}
-		
 	}
 
 	// Form Progress ------------------------- //
@@ -88,7 +117,8 @@
 			this.formProgressBarInner = this.el.querySelector('.formProgressBarInner')
 		}
 
-		set(page) {
+		setPage(page) {
+			this.stepNumber.innerText = page
 			this.formProgressBarInner.style.transform = `scaleX(${page/this.pages})`
 		}
 	}

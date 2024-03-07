@@ -68,7 +68,6 @@
     <!-- !!! -->
     
     <script src="https://merceradvisors.tfaforms.net/wForms/3.11/js/wforms.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
-    <script>console.log(window.wFORMS);</script>
 
     <script src="https://merceradvisors.tfaforms.net/wForms/3.11/js/localization-en_US.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
 </head>
@@ -118,17 +117,17 @@
                                     </div>
                                     <div id="tfa_6" class="section inline group">
                                         <div class="oneField field-container-D labelsRemoved">
-                                            <div class="inputWrapper"><input name="tfa_4" placeholder="First Name" title="First Name" type="text"></div>
+                                            <div class="inputWrapper"><input name="tfa_4" placeholder="First Name" title="First Name" type="text" required></div>
                                         </div>
                                         <div class="oneField field-container-D labelsRemoved" id="tfa_5-D">
-                                            <div class="inputWrapper"><input id="tfa_5" name="tfa_5" placeholder="Last Name" title="Last Name" type="text"></div>
+                                            <div class="inputWrapper"><input id="tfa_5" name="tfa_5" placeholder="Last Name" title="Last Name" type="text" required></div>
                                         </div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_7-D">
-                                        <div class="inputWrapper"><input id="tfa_7" name="tfa_7" placeholder="Email Address" title="Email" type="email"></div>
+                                        <div class="inputWrapper"><input id="tfa_7" name="tfa_7" placeholder="Email Address" title="Email" type="email" required></div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_8-D">
-                                        <div class="inputWrapper"><input id="tfa_8" name="tfa_8" placeholder="Phone Number" autoformat="###-###-####" title="Phone Number" type="tel"></div>
+                                        <div class="inputWrapper"><input id="tfa_8" name="tfa_8" placeholder="Phone Number" autoformat="###-###-####" title="Phone Number" type="tel" required></div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_9-D">
                                         <div class="inputWrapper"><input id="tfa_9" name="tfa_9" placeholder="Zip Code (Optional)" title="Zip Code (optional)" type="number"></div>
@@ -368,7 +367,9 @@
 
                         </div>
                         
-                        <div class="actions" id="96-A" data-contentid="submit_button"><input type="submit" data-label="Submit" class="primaryAction" id="submit_button" value="Submit"></div>
+                        <div class="actions" id="96-A" data-contentid="submit_button">
+                            <input type="submit" data-label="Submit" class="primaryAction" id="submit_button" value="Submit">
+                        </div>
 
                         <div style="clear:both;"></div>
 
