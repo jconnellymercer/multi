@@ -10,9 +10,7 @@
 			if ( typeof setOptions === 'function' ) {
 				setOptions()
 			}
-
 			this.customizeCaptcha();
-
 		}
 	
 		customizeCaptcha() {
@@ -98,12 +96,61 @@
 
 		watchFields() {
 			this.requiredInputs.forEach( (input, i) => {
+				
+				if ( input.type === 'tel' ) {
+					const placeholder = input.el.placeholder
+					input.el.addEventListener("focus", e => {
+						input.el.placeholder = "###-###-####"
+					})
+					input.el.addEventListener("blur", e => {
+						input.el.placeholder = placeholder
+					})
+				}
+
 				input.el.addEventListener("input", e => {
+					if ( input.type === 'tel' ) {
+						let val = e.target.value.replace(/\D/g, ''); // Remove non-digit characters
+						if (val.length > 3) {
+							val = val.substring(0, 3) + '-' + val.substring(3);
+						}
+						if (val.length > 7) {
+							val = val.substring(0, 7) + '-' + val.substring(7);
+						}
+						e.target.value = val.substring(0,12);
+					}
 					this.requiredInputs[i].value = e.target.value
+					console.log( this.validateFields() );
 				})
 			} )
+		}
 
-			console.log(this.requiredInputs);
+		validateFields() {
+			return this.requiredInputs.reduce((isValid, input) => {
+				if ( isValid === false ) 
+					return isValid
+				
+				switch (input.type) {
+					case "email": {
+						return this.validateEmail(input.value)
+					}
+					case "tel": {
+						return this.validateTelephone(input.value)
+					}
+					default: {
+						return input.value.length > 0
+					}
+				}
+			}, true)
+		}
+
+		validateTelephone(value) {
+			const telRegEx = /^\d{3}-\d{3}-\d{4}$/g
+			return telRegEx.test(value)
+		}
+
+		validateEmail(value) {
+			const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/g
+			return emailRegEx.test(value)
 		}
 	}
 
