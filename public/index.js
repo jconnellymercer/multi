@@ -76,11 +76,25 @@
 	}
 
 	class Page {
+		el = null
+		dataValid = false
+		requiredInputs = []
+		nextButton = null
+		errorColor = "#FF0000"
+		errorSvg = `
+			<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.5-5.009c0-.867.659-1.491 1.491-1.491.85 0 1.509.624 1.509 1.491 0 .867-.659 1.509-1.509 1.509-.832 0-1.491-.642-1.491-1.509zM11.172 6a.5.5 0 0 0-.499.522l.306 7a.5.5 0 0 0 .5.478h1.043a.5.5 0 0 0 .5-.478l.305-7a.5.5 0 0 0-.5-.522h-1.655z"
+					fill="${this.errorColor}" />
+			</svg>
+		`
+
 		constructor(el, height) {
 			this.el = el
 			this.el.style.height = `${height}px` 
-			
-			this.requiredInputs = []
+			this.nextButton = this.el.querySelector('input.next') || this.el.querySelector('input[type="submit"]')
+
+			// gather array of data about fields
 			this.el.querySelectorAll('input[required]').forEach( input => {
 				const { pattern, type, value } = input
 				this.requiredInputs.push({
@@ -89,13 +103,33 @@
 				})
 			} )
 
+			// setup a proxy to watch property changes
+			this.__proxy = new Proxy(this, {
+				set(target, prop, val) {
+					if ( prop === 'dataValid' ) {
+						target.nextButton.disabled = ! val
+					}
+					return true
+				}
+			})
+
+			// watch fields if there are required inputs
 			if ( this.requiredInputs.length ) {
+				this.__proxy.dataValid = false
 				this.watchFields()
 			}
 		}
 
 		watchFields() {
 			this.requiredInputs.forEach( (input, i) => {
+
+				input.el.addEventListener("blur", e => {
+					if ( ! this.validateInput(input) ) {
+						this.setError(input)
+					} else {
+						this.clearError(input)
+					}
+				})
 				
 				if ( input.type === 'tel' ) {
 					const placeholder = input.el.placeholder
@@ -109,38 +143,43 @@
 
 				input.el.addEventListener("input", e => {
 					if ( input.type === 'tel' ) {
-						let val = e.target.value.replace(/\D/g, ''); // Remove non-digit characters
-						if (val.length > 3) {
-							val = val.substring(0, 3) + '-' + val.substring(3);
-						}
-						if (val.length > 7) {
-							val = val.substring(0, 7) + '-' + val.substring(7);
-						}
-						e.target.value = val.substring(0,12);
+						e.target.value = this.maskPhoneNumber(e.target)
 					}
 					this.requiredInputs[i].value = e.target.value
-					console.log( this.validateFields() );
+					this.validateFields()
 				})
 			} )
 		}
 
 		validateFields() {
-			return this.requiredInputs.reduce((isValid, input) => {
-				if ( isValid === false ) 
+			const allFieldsValid = this.requiredInputs.reduce((isValid, input) => {
+				if ( isValid === false ) {
 					return isValid
-				
-				switch (input.type) {
-					case "email": {
-						return this.validateEmail(input.value)
-					}
-					case "tel": {
-						return this.validateTelephone(input.value)
-					}
-					default: {
-						return input.value.length > 0
-					}
 				}
+				return this.validateInput(input)
 			}, true)
+
+			this.__proxy.dataValid = allFieldsValid
+
+			if ( allFieldsValid ) {
+				this.requiredInputs.forEach(input => this.clearError(input))
+			}
+
+			return allFieldsValid
+		}
+
+		validateInput(input) {
+			switch (input.type) {
+				case "email": {
+					return this.validateEmail(input.value)
+				}
+				case "tel": {
+					return this.validateTelephone(input.value)
+				}
+				default: {
+					return input.value.length > 0
+				}
+			}
 		}
 
 		validateTelephone(value) {
@@ -151,6 +190,33 @@
 		validateEmail(value) {
 			const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/g
 			return emailRegEx.test(value)
+		}
+
+		maskPhoneNumber(input) {
+			let val = input.value.replace(/\D/g, ''); // Remove non-digit characters
+			if (val.length > 3) {
+				val = val.substring(0, 3) + '-' + val.substring(3);
+			}
+			if (val.length > 7) {
+				val = val.substring(0, 7) + '-' + val.substring(7);
+			}
+			return val.substring(0,12);
+		}
+
+		setError(input) {
+			const svgWrapper = document.createElement('span')
+			svgWrapper.classList.add('errorIcon')
+			svgWrapper.innerHTML = this.errorSvg
+			input.el.parentElement.classList.add('error')
+			input.el.parentElement.appendChild(svgWrapper)
+		} 
+
+		clearError(input) {
+			input.el.parentElement.classList.remove('error')
+			const icon = input.el.parentElement.querySelector('.errorIcon')
+			if ( icon ) {
+				icon.remove()
+			}
 		}
 	}
 
