@@ -4,6 +4,7 @@
 	--raspberry-dark: #930667;
 	--black: #454759;
 	--offwhite: #fcfcfc;
+	--grey-900: #f1f1f1;
 	--grey-800: #cdcdcd;
 	--grey-700: #c5c5c5;
 	--grey-600: #a2a2a2;
@@ -11,6 +12,10 @@
 	--button-border-radius: 15px;
 	--button-font-size: 1.375rem;
 	--button-padding: 0.85em 0.5em;
+	--input-box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,0.05);
+	--input-border-radius: 6px;
+	--input-border-color: 6px;
+	--input-border-width: 1px;
 	--grid-gap: 1rem;
 	--transition: all 200ms ease-out;
 	--transition-fast: all 100ms ease-out;
@@ -36,7 +41,6 @@
 }
 
 .mercerForm .htmlSection {
-	margin-top: 0;
 	line-height: 1.2;
 }
 
@@ -132,8 +136,8 @@
 .mercerForm .page:nth-child(3) { transform: translateX(200%); }
 .mercerForm .page:nth-child(4) { transform: translateX(300%); }
 .mercerForm .page:nth-child(5) { transform: translateX(400%); }
-.mercerForm .page:nth-child(6) { transform: translateX(500%); }
-.mercerForm .page:nth-child(7) { transform: translateX(600%); } */
+.mercerForm .page:nth-child(6) { transform: translateX(500%); } */
+/* .mercerForm .page:nth-child(7) { transform: translateX(130%); } */
 
 .mercerForm .page.current {
 	position: relative;
@@ -163,9 +167,8 @@
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid var(--grey-600);
-	padding: 1.5rem 0;
+	padding: 1.25rem 0;
 	margin: 0 0 0.5rem;
-	min-height: 100px;
 }
 
 .formPageNumber {
@@ -179,6 +182,7 @@
 	text-align: center;
 	width: 2.25rem;
 }
+
 .formPageNumber span {
 	position: absolute;
     left: 50%;
@@ -186,18 +190,36 @@
     transform: translate(-50%, -50%);
 }
 
+.mercerForm .formPageHeader .htmlSection {
+	margin-top: 0;
+	min-height: 2.75rem;
+	display: flex;
+	align-items: center;
+}
+
 
 /* Fields --------------------- */
+.mercerForm .inline.group {
+	display: flex;
+	column-gap: var(--grid-gap);
+}
+
+.mercerForm .wForm .inline.group .oneField {
+	flex: 1 1 100%;
+}
+
 .mercerForm .wForm .inputWrapper {
 	position: relative;
 }
 
+/* Text fields */
 .mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
-.mercerForm .wForm .inputWrapper textarea {
+.mercerForm .wForm .inputWrapper textarea,
+.mercerForm .wForm .inputWrapper .dropdown {
 	background: var(--offwhite);
-	border-radius: 6px;
+	border-radius: var(--input-border-radius);
 	border: 1px solid var(--grey-800);
-	box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,0.05);
+	box-shadow: var(--input-box-shadow);
 	color: var(--black);
 	font-size: 1.125rem;
 	font-weight: 500;
@@ -208,35 +230,90 @@
 	transition: all 200ms ease-out;
 	width: 100%;
 }
+
+/* Textarea */
 .mercerForm .wForm .inputWrapper textarea {
 	font-size: 1.125rem;
 	line-height: 1.2;
 }
+
+/* Dropdowns */
+.mercerForm .dropdown {
+	position: relative;
+	cursor: pointer;
+	box-shadow: var(--input-box-shadow);
+}
+.mercerForm .dropdown.open {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.mercerForm .dropdown-icon {
+	position: absolute;
+	top: 50%;
+	right: 1rem;
+	transform: translateY(-50%);
+	transition: var(--transition);
+}
+.mercerForm .dropdown.open .dropdown-icon {
+	transform: translateY(-50%) rotate(180deg);
+}
+.mercerForm .dropdown-options {
+	background-color: var(--offwhite);
+	border-bottom-left-radius: var(--input-border-radius);
+	border-bottom-right-radius: var(--input-border-radius);
+	border: 1px solid var(--grey-800);
+	border-top: 0;
+	box-shadow: inset 6px 0 4px -4px rgba(0,0,0,0.05);
+	left: -1px;
+	max-height: 0px;
+	opacity: 0;
+	overflow: scroll;
+	pointer-events: none;
+	position: absolute;
+	top: calc(100% - 3px);
+	transition: var(--transition);
+	width: calc(100% + 2px);
+	z-index: 1;
+}
+.mercerForm .dropdown.open .dropdown-options {
+	opacity: 1;
+	max-height: 180px;
+	pointer-events: all;
+}
+.mercerForm .dropdown-option {
+	font-size: 16px;
+	line-height: 1;
+	padding: 0.7em 1rem;
+	border-bottom: 1px solid var(--grey-900);
+	transition: var(--transition);
+}
+.mercerForm .dropdown-option:hover,
+.mercerForm .dropdown-option:focus {
+	background-color: var(--grey-900);
+}
+
+/* States */
 .mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):hover,
-.mercerForm .wForm .inputWrapper textarea:hover {
+.mercerForm .wForm .inputWrapper textarea:hover,
+.mercerForm .dropdown:hover,
+.mercerForm .dropdown:hover .dropdown-options {
 	border-color: var(--black);
 }
 .mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus,
-.mercerForm .wForm .inputWrapper textarea:focus {
+.mercerForm .wForm .inputWrapper textarea:focus,
+.mercerForm .dropdown:focus,
+.mercerForm .dropdown:focus .dropdown-options {
 	border-color: var(--raspberry);
 }
 .mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"])::placeholder,
-.mercerForm .wForm .inputWrapper textarea::placeholder {
+.mercerForm .wForm .inputWrapper textarea::placeholder,
+.mercerForm .dropdown-label {
 	color: #444759 !important;
 	transition: opacity 200ms ease-out;
 }
 .mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus::placeholder,
 .mercerForm .wForm .inputWrapper textarea:focus::placeholder {
 	opacity: 0.4;
-}
-
-.mercerForm .inline.group {
-	display: flex;
-	column-gap: var(--grid-gap);
-}
-
-.mercerForm .wForm .inline.group .oneField {
-	flex: 1 1 100%;
 }
 
 /* Error fields */

@@ -11,6 +11,7 @@
 				setOptions()
 			}
 			this.customizeCaptcha();
+			document.querySelectorAll('[data-mercer-dropdown]').forEach( el => new Dropdown(el) )
 		}
 	
 		customizeCaptcha() {
@@ -115,7 +116,7 @@
 
 			// watch fields if there are required inputs
 			if ( this.requiredInputs.length ) {
-				this.__proxy.dataValid = false
+				// this.__proxy.dataValid = false
 				this.watchFields()
 			}
 		}
@@ -221,7 +222,6 @@
 	}
 
 	// Form Progress ------------------------- //
-
 	class FormProgress {
 		constructor(el, pages) {
 			this.el = el
@@ -236,8 +236,53 @@
 		}
 	}
 
+	// Fields ------------------------------ //
+	// class Dropdown {
+	// 	select = null
+	// 	parent = null
+	// 	container = null
+	// 	input = null
+
+	// 	constructor(el) {
+	// 		this.select = el
+	// 		this.parent = el.parentElement
+	// 		this.build()
+	// 	}
+
+	// 	build() {
+	// 		const container = document.createElement("div")
+	// 		const input = document.createElement("input")
+	// 		const { id, name, value } = this.select
+	// 		const containerAttrs = {
+	// 			"className": "dropdown",
+	// 			"role": "combobox",
+	// 			"aria-haspopup": "listbox",
+	// 			"aria-expanded": "false",
+	// 			"aria-labelledby": `${id}-label`,
+	// 			"tabindex": "0",
+	// 			"id":`${id}-dropdown`
+	// 		}
+	// 		for (const key in containerAttrs) {
+	// 			container.setAttribute(key, containerAttrs[key])
+	// 		}
+	// 		const inputAttrs = {
+	// 			id,
+	// 			name,
+	// 			value,
+	// 			type: "hidden"
+	// 		}
+	// 		for (const key in inputAttrs) {
+	// 			input.setAttribute(key, inputAttrs[key])
+	// 		}
+	// 		container.appendChild(input)
+	// 		console.log(container);
+	// 		// this.label = document.createElement("span") 
+	// 		// this.label = 
+	// 		// <span id="tfa_160-label" class="dropdown-label">How did you hear about us?</span>
+	// 	}
+	// }
+
 	// Utilities ----------------------------- //
-	
 	const Util = {
 		throttle: function(func, limit) {
 			let inThrottle;

@@ -75,14 +75,15 @@
 <body class="default wFormWebPage" style="padding:2rem">
 
     <div id="tfaContent" style="max-width: 450px;">
+        
         <div class="wFormContainer mercerForm">
-
-            <!-- !!! Injecting our custom JS here -->
-            <script src="index.js" type="text/javascript"></script>
-            <!-- !!! -->
 
             <!-- !!! Injecting our custom CSS here -->
             <link href="style.css" rel="stylesheet">
+            <!-- !!! -->
+            
+            <!-- !!! Injecting our custom JS here -->
+            <script src="index.js" type="text/javascript"></script>
             <!-- !!! -->
             
             <div>
@@ -341,7 +342,40 @@
                                     <div class="formPageHeader">
                                         <div class="formPageNumber"><span>7</span></div>
                                         <div class="htmlSection" id="tfa_106">
-                                            <div class="htmlContent" id="tfa_106-HTML">Last question! <b>Anything else</b> you'd like us to know before you speak with an advisor? <span class="faded">(Optional)</span></div>
+                                            <div class="htmlContent" id="tfa_106-HTML">
+                                                A few <b>last questions</b> as we wrap up!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="oneField field-container-D labelsRemoved" id="tfa_160-D" >
+                                        <div class="inputWrapper">
+                                            <!-- <div class="dropdown" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="tfa_160-label" tabindex="0" id="tfa_160">
+                                                <span id="tfa_160-label" class="dropdown-label">How did you hear about us?</span>
+                                                <span class="dropdown-icon"><svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.78711L8.5 9.93961L16 1.78711" stroke="#484747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                                <input type="hidden" id="tfa_160" name="tfa_160" value="">
+                                                <div id="source-options" class="dropdown-options" aria-hidden="true" tabindex="-1" role="listbox">
+                                                    <div class="dropdown-option" role="option" aria-selected="false" data-value="tfa_161">Google/Search Engine</div>
+                                                    <div class="dropdown-option" role="option" aria-selected="false" data-value="tfa_162">Facebook Ad</div>
+                                                    <div class="dropdown-option" role="option" aria-selected="false" data-value="tfa_163">LinkedIn Ad</div>
+                                                    <div class="dropdown-option" role="option" aria-selected="false" data-value="tfa_166">Instagram Ad</div>
+                                                    <div class="dropdown-option" role="option" aria-selected="false" data-value="tfa_167">Word-of-Mouth/Peer Referral</div>
+                                                    <div class="dropdown-option" role="option" aria-selected="false" data-value="tfa_168">Other</div>
+                                                </div>
+                                            </div> -->
+                                            <select class="dropdown" id="tfa_160" name="tfa_160" title="Edit this text">
+                                                <option value="">How did you hear about us?</option>
+                                                <option value="tfa_161" id="tfa_161" class="">Google/Search Engine</option>
+                                                <option value="tfa_162" id="tfa_162" class="">Facebook Ad</option>
+                                                <option value="tfa_163" id="tfa_163" class="">LinkedIn Ad</option>
+                                                <option value="tfa_166" id="tfa_166" class="">Instagram Ad</option>
+                                                <option value="tfa_167" id="tfa_167" class="">Word-of-Mouth/Peer Referral</option>
+                                                <option value="tfa_168" id="tfa_168" class="">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                     <div class="htmlSection" id="tfa_165">
+                                        <div class="htmlContent" id="tfa_165-HTML">
+                                            <b>Anything else</b> you’d like us to know before you speak with an advisor? <span class="faded">(Optional)</span>
                                         </div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_104-D">
@@ -390,9 +424,20 @@
             <p class="supportInfo">
             </p>
         </div>
-        <script id="open-telemetry-script" src="https://merceradvisors.tfaforms.net/dist/open-telemetry/open-telemetry.3e6c1bedaa7fb4452dd0.js" data-customer-id="125177" data-exporter-url="https://us-east-1-otel.formassembly.com/v1/traces" data-exporter-console="0"></script>
+    
+        <script id="open-telemetry-script" 
+            src="https://merceradvisors.tfaforms.net/dist/open-telemetry/open-telemetry.3e6c1bedaa7fb4452dd0.js" 
+            data-customer-id="125177" 
+            data-exporter-url="https://us-east-1-otel.formassembly.com/v1/traces" 
+            data-exporter-console="0"
+            >
+        </script>
+        <script src="https://merceradvisors.tfaforms.net/api_v2/sst/copy-and-paste"></script>
+        <!-- Do we need this? -->
+        <!-- <script src="https://merceradvisors.tfaforms.net/js/iframe_message_helper_internal.js?v=2"></script> -->
+        
     </div>
-    <script src="https://merceradvisors.tfaforms.net/js/iframe_message_helper_internal.js?v=2"></script>
+
 </body>
 
 </html>
