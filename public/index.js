@@ -116,7 +116,7 @@
 
 			// watch fields if there are required inputs
 			if ( this.requiredInputs.length ) {
-				// this.__proxy.dataValid = false
+				this.__proxy.dataValid = false
 				this.watchFields()
 			}
 		}
@@ -304,7 +304,6 @@
 
 		faForm = document.querySelector('.mercerForm');
 		window.mercerForm = new MercerMultiPageForm(faForm, () => {
-			window.wFORMS.behaviors.prefill.skip = false;
 			window.wFORMS.behaviors.paging.runValidationOnPageNext = true;
 			window.wFORMS.behaviors.paging.MESSAGES.CAPTION_NEXT = "Next";
 			window.wFORMS.behaviors.paging.MESSAGES.CAPTION_PREVIOUS = "Previous";

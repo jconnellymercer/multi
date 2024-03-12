@@ -37,7 +37,12 @@
     <!-- !!! END WORDPRESS SITE RESOURCES -->
 
 
+    <!-- Form assembly script -->
     <script data-for="FA__DOMContentLoadedEventDispatch" src="https://merceradvisors.tfaforms.net/js/FA__DOMContentLoadedEventDispatcher.js" defer></script>
+    
+    <!-- Form Assembly script: Google reCAPTCHA -->
+    
+    <!-- Form assembly script -->
     <script>
         document.addEventListener("FA__DOMContentLoaded", (function() {
             const t = Math.floor((new Date).getTime() / 1e3);
@@ -57,19 +62,20 @@
         }))
     </script>
 
-    <!-- !!! ALSO FROM WORDPRESS -->
-    <link href="https://merceradvisstg.wpengine.com/wp-content/themes/hello-theme-child-master/css/fa-raspberry-gray-theme.min.css" rel="stylesheet" type="text/css">
-    <!-- !!! END WORDPRESS -->
-
-    <!-- !!! Removing FA stuff -->
+    <!-- Disabling some of these so we can achieve the user experience we're aiming for -->
     <!-- <link href="https://merceradvisors.tfaforms.net/dist/form-builder/5.0.0/wforms-layout.css?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979" rel="stylesheet"> -->
-    <!-- <link href="https://merceradvisors.tfaforms.net/uploads/themes/theme-21.css" rel="stylesheet"> -->
+    <link href="https://merceradvisstg.wpengine.com/wp-content/themes/hello-theme-child-master/css/fa-raspberry-gray-theme.min.css" rel="stylesheet" type="text/css">
     <!-- <link href="https://merceradvisors.tfaforms.net/dist/form-builder/5.0.0/wforms-jsonly.css?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979" rel="alternate stylesheet" title="This stylesheet activated by javascript"> -->
-    <!-- !!! -->
-    
-    <script src="https://merceradvisors.tfaforms.net/wForms/3.11/js/wforms.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
+    <script type="text/javascript" src="https://merceradvisors.tfaforms.net/wForms/3.11/js/wforms.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
+    <!-- <link href="https://merceradvisors.tfaforms.net/uploads/themes/theme-21.css" rel="stylesheet"> -->
+    <!-- // -->
 
-    <script src="https://merceradvisors.tfaforms.net/wForms/3.11/js/localization-en_US.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
+    <script type="text/javascript">
+        window.wFORMS.behaviors.prefill.skip = false;    
+    </script>
+
+    <!-- Form Assembly script -->
+    <script type="text/javascript" src="https://merceradvisors.tfaforms.net/wForms/3.11/js/localization-en_US.js?v=8cd3e1befd6f9e805edfedd58a24a4ecd646f979"></script>
 </head>
 
 <body class="default wFormWebPage" style="padding:2rem">
@@ -81,7 +87,7 @@
             <!-- !!! Injecting our custom CSS here -->
             <link href="style.css" rel="stylesheet">
             <!-- !!! -->
-            
+
             <!-- !!! Injecting our custom JS here -->
             <script src="index.js" type="text/javascript"></script>
             <!-- !!! -->
@@ -396,6 +402,19 @@
                                     <input type="hidden" id="tfa_155" name="tfa_155" value="Customer">
                                     <input type="hidden" id="tfa_157" name="tfa_157" value="Billing">
                                     <input type="hidden" id="tfa_159" name="tfa_159" value="Yes">
+                                    
+                                    <div id="google-captcha" style="display: none">
+                                        <div class="captcha">
+                                            <div class="oneField">
+                                                <div class="g-recaptcha" id="g-recaptcha-render-div"></div>
+                                                <div class="g-captcha-error"></div>
+                                            </div>
+                                            <small id="disabled-explanation" class="captchaHelp" style="display: none; margin-top:0.5rem">
+                                                The submit button will be disabled until you complete the CAPTCHA.
+                                            </small>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
