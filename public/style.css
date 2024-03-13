@@ -10,28 +10,35 @@
 	--grey-600: #a2a2a2;
 	--error: #FF0000;
 	--button-border-radius: 15px;
-	--button-font-size: 1.375rem;
+	--button-font-size: 1.15em;
 	--button-padding: 0.85em 0.5em;
 	--input-box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,0.05);
 	--input-border-radius: 6px;
 	--input-border-color: 6px;
 	--input-border-width: 1px;
-	--grid-gap: 1rem;
+	--grid-gap: 1em;
 	--transition: all 200ms ease-out;
 	--transition-fast: all 100ms ease-out;
 }
 
 .mercerForm {
 	font-family: "Korolev", "Roboto", sans-serif;
-	font-size: 1.125rem;
+	font-size: 1rem;
 	line-height: 1;
 	font-weight: 500;
 }
+@media(min-width:768px) {
+	.mercerForm { font-size: 1.125rem; }
+}
+
+.mercerForm * {
+	outline: none;
+} 
 
 .mercerForm .wForm {
 	background: none;
-    color: var(--black);
-    border: none;
+  color: var(--black);
+  border: none;
 	container-type: inline-size;
 	container-name: form;
 }
@@ -42,6 +49,7 @@
 
 .mercerForm .htmlSection {
 	line-height: 1.2;
+	margin: 0;
 }
 
 .mercerForm .faded {
@@ -67,16 +75,21 @@
 }
 
 .mercerForm .formTitle {
-	font-size: 36px;
+	font-size: 1.625em;
 	font-weight: bold;
 	line-height: 1;
+}
+@media(min-width:768px) {
+	.mercerForm .formTitle {
+		font-size: 2em;
+	}
 }
 
 .mercerForm .formHeader--right {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	margin-top: 0.5rem;
+	margin-top: 0.5em;
 }
 @container form (min-width:415px) {
 	.mercerForm .formHeader--right {
@@ -88,19 +101,26 @@
 .mercerForm .formTimeEstimate {
 	font-size: 14px;
 	line-height: 1.15;
+	opacity: 0;
+	transform: translate3d(-20px,0,0);
+	transition: var(--transition);
+}
+.mercerForm[data-current-page="1"] .formTimeEstimate {
+	opacity: 1;
+	transform: translate3d(0,0,0);
 }
 
 .mercerForm .formProgress {
 	display: flex;
 	align-items: center;
-	margin: 0.5rem 0;
+	margin: 0.5em 0;
 }
 .mercerForm .formProgressBar {
 	position: relative;
 	width: 84px;
 	height: 9px;
 	background-color: var(--grey-700);
-	margin-right: 1rem;
+	margin-right: 1em;
 }
 .mercerForm .formProgressBarInner {
 	background-color: var(--raspberry);
@@ -149,7 +169,7 @@
 .mercerForm .pageSection {
 	display: flex;
 	flex-direction: column;
-	row-gap: 1rem;
+	row-gap: 1.25em;
 	transform: translate3d(-30px,0,0);
 	transition: all 400ms ease-out;
 }
@@ -167,20 +187,20 @@
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid var(--grey-600);
-	padding: 1.25rem 0;
-	margin: 0 0 0.5rem;
+	padding: 1.25em 0;
+	margin: 0;
 }
 
 .formPageNumber {
 	border-radius: 50%;
 	border: 2px solid var(--black);
-	flex: 0 0 2.25rem;
+	flex: 0 0 2.25em;
 	font-weight: bold;
-	height: 2.25rem;
-	margin-right: 0.75rem;
+	height: 2.25em;
+	margin-right: 0.75em;
 	position: relative;
 	text-align: center;
-	width: 2.25rem;
+	width: 2.25em;
 }
 
 .formPageNumber span {
@@ -191,8 +211,7 @@
 }
 
 .mercerForm .formPageHeader .htmlSection {
-	margin-top: 0;
-	min-height: 2.75rem;
+	min-height: 2.25em;
 	display: flex;
 	align-items: center;
 }
@@ -221,19 +240,19 @@
 	border: 1px solid var(--grey-800);
 	box-shadow: var(--input-box-shadow);
 	color: var(--black);
-	font-size: 1.125rem;
+	font-size: 1em;
 	font-weight: 500;
 	height: auto;
 	line-height: 1;
 	outline: 0;
-	padding: 1rem;
+	padding: 1em;
 	transition: all 200ms ease-out;
 	width: 100%;
 }
 
 /* Textarea */
 .mercerForm .wForm .inputWrapper textarea {
-	font-size: 1.125rem;
+	font-size: 1em;
 	line-height: 1.2;
 }
 
@@ -250,7 +269,7 @@
 .mercerForm .dropdown-icon {
 	position: absolute;
 	top: 50%;
-	right: 1rem;
+	right: 1em;
 	transform: translateY(-50%);
 	transition: var(--transition);
 }
@@ -283,7 +302,7 @@
 .mercerForm .dropdown-option {
 	font-size: 16px;
 	line-height: 1;
-	padding: 0.7em 1rem;
+	padding: 0.7em 1em;
 	border-bottom: 1px solid var(--grey-900);
 	transition: var(--transition);
 }
@@ -324,10 +343,10 @@
 .mercerForm .wForm .inputWrapper .errorIcon {
 	position: absolute;
 	top: 50%;
-	right: 1rem;
+	right: 1em;
 	transform: translateY(-50%);
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 1.5em;
+	height: 1.5em;
 }
 
 /* Tiled Choices --------------------- */
@@ -341,7 +360,7 @@
 .mercerForm .tile {
 	flex: 1 1 auto;
 	width: calc(50% - var(--grid-gap) / 2);
-	min-height: 6.875rem;
+	min-height: 6.875em;
 }
 
 .mercerForm .tiles input[type="radio"], 
@@ -351,18 +370,21 @@
 .mercerForm .tiles .tile .label {	
 	background-color: var(--offwhite);
 	box-shadow: inset 0 0 0 1px #999;
-	padding: 1.3rem;
+	padding: 1em 0.9em;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	justify-content: center;
+	justify-content: flex-start;
 	border-radius: 5px;
-	font-size: 0.875rem;
+	font-size: 0.875em;
 	line-height: 1.2;
 	height: 100%;
 	cursor: pointer;
 	color: var(--black);
 	transition: var(--transition-fast);
+}
+.mercerForm .tiles .tile .label.singleLine {
+	justify-content: center;
 }
 
 .mercerForm .tiles .tile .label:active {
@@ -382,22 +404,31 @@
 
 .mercerForm .tiles .tile .label .title {	
 	margin: 0 auto;
-	font-size: 1rem;
-}
-.mercerForm .tiles .tile .label .icon {	
-	margin: 1rem auto 0 ;
-}
-.mercerForm .tiles .tile .label .text {	
-	margin: 1rem auto 0;
+	font-size: 0.875em;
 }
 
+.mercerForm .tiles .tile .label .icon {	
+	margin: 0.75em auto 0.25em;
+	height: 40px;
+}
+
+.mercerForm .tiles .tile .label .text {	
+	margin: 0.5em auto 0;
+}
+
+@media(min-width: 768px) {
+	.mercerForm .tiles .tile .label { padding: 1.3em 0.9em;	}
+	.mercerForm .tiles .tile .label.square { min-height: 195px; }
+	.mercerForm .tiles .tile .label .title { font-size: 1em; }
+	.mercerForm .tiles .tile .label .icon {	height: 55px; margin: 1em auto 0.5em; }
+}
 
 /* Buttons --------------------- */
 
 .mercerForm .wfPagingButtons {
 	display: flex;
 	column-gap: var(--grid-gap);
-	margin-top: 2.25rem;
+	margin-top: 2.25em;
 }
 
 .mercerForm button,

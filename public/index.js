@@ -37,9 +37,11 @@
 			this.loading = true
 			this.scrollY = window.scrollY
 			this.pages = this.form.querySelectorAll('.wfPage, .wfCurrentPage')
+			this.submitBtn = this.form.querySelector('[type="submit"]')
 			this.formProgress = new FormProgress(this.el.querySelector('.formProgress'), this.pages.length)
 
 			window.wFORMS.behaviors.paging.onPageChange = (page) => this.onPageChange(page)
+			window.wFORMS.behaviors.paging.onPagePrevious = (page) => this.onPagePrevious(page)
 
 			window.addEventListener("scroll", Util.throttle(() => {
 				// counteracts FA's behavior which scrolls window 
@@ -58,20 +60,27 @@
 		moveLastPageButtons() {
 			const lastPage = this.pages[this.pages.length - 1]
 			const lastPageBtnContainer = this.form.querySelector('.last-page-previous-button')
-			const submitBtn = this.form.querySelector('[type="submit"]')
-			lastPageBtnContainer.appendChild(submitBtn)
+			lastPageBtnContainer.appendChild(this.submitBtn)
 			lastPage.appendChild(lastPageBtnContainer)
 		}
 		
 		initPages() {
-			const maxHeight = this.pages.entries().reduce((maxHeight, page) => Math.max(maxHeight || 0, page[1].offsetHeight) )
-			this.pages.forEach( page => new Page(page, maxHeight) )
+			let tallestPage
+			if ( window.innerWidth > 767 ) {
+				tallestPage = this.pages.entries().reduce((maxHeight, page) => Math.max(maxHeight || 0, page[1].offsetHeight) )
+			}
+			this.pages.forEach( page => new Page(page, tallestPage) )
 		}
 		
 		onPageChange(page) {
 			window.scrollTo(0, this.scrollY);
 			this.pageIndex = parseInt( page.id.split('').reverse()[0] )
+			this.el.setAttribute('data-current-page', this.pageIndex)
 			this.formProgress.setPage(this.pageIndex)
+		}
+
+		onPagePrevious(page) {
+			this.submitBtn.disabled = true
 		}
 		
 	}
@@ -92,7 +101,7 @@
 
 		constructor(el, height) {
 			this.el = el
-			this.el.style.height = `${height}px` 
+			this.el.style.height = height ? `${height}px` : ''
 			this.nextButton = this.el.querySelector('input.next') || this.el.querySelector('input[type="submit"]')
 
 			// gather array of data about fields
@@ -116,7 +125,7 @@
 
 			// watch fields if there are required inputs
 			if ( this.requiredInputs.length ) {
-				this.__proxy.dataValid = false
+				// this.__proxy.dataValid = false
 				this.watchFields()
 			}
 		}
