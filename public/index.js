@@ -246,50 +246,125 @@
 	}
 
 	// Fields ------------------------------ //
-	// class Dropdown {
-	// 	select = null
-	// 	parent = null
-	// 	container = null
-	// 	input = null
+	class Dropdown {
+		select = null
+		parent = null
+		container = null
+		label = null
+		icon = null
+		input = null
+		optionsContainer = null
+		open = false
 
-	// 	constructor(el) {
-	// 		this.select = el
-	// 		this.parent = el.parentElement
-	// 		this.build()
-	// 	}
+		constructor(el) {
+			this.select = el
+			this.parent = el.parentElement
+			this.build()
+			this.bindEvents()
+		}
 
-	// 	build() {
-	// 		const container = document.createElement("div")
-	// 		const input = document.createElement("input")
-	// 		const { id, name, value } = this.select
-	// 		const containerAttrs = {
-	// 			"className": "dropdown",
-	// 			"role": "combobox",
-	// 			"aria-haspopup": "listbox",
-	// 			"aria-expanded": "false",
-	// 			"aria-labelledby": `${id}-label`,
-	// 			"tabindex": "0",
-	// 			"id":`${id}-dropdown`
-	// 		}
-	// 		for (const key in containerAttrs) {
-	// 			container.setAttribute(key, containerAttrs[key])
-	// 		}
-	// 		const inputAttrs = {
-	// 			id,
-	// 			name,
-	// 			value,
-	// 			type: "hidden"
-	// 		}
-	// 		for (const key in inputAttrs) {
-	// 			input.setAttribute(key, inputAttrs[key])
-	// 		}
-	// 		container.appendChild(input)
-	// 		console.log(container);
-	// 		// this.label = document.createElement("span") 
-	// 		// this.label = 
-	// 		// <span id="tfa_160-label" class="dropdown-label">How did you hear about us?</span>
-	// 	}
-	// }
+		toggleOpen(val) {
+			if ( val === undefined ) {
+				this.container.classList.toggle('open')
+			} else if ( val === true ) {
+				this.container.classList.add('open')
+			} else {
+				this.container.classList.remove('open')
+			}
+		}
+
+		bindEvents() {
+			document.addEventListener('click', e => {
+				this.toggleOpen(false)
+			})
+			this.container.addEventListener('click', e => {
+				e.preventDefault()
+				e.stopPropagation()
+				this.toggleOpen()
+			})
+			for (const optionId in this.options) {
+				this.options[optionId].addEventListener('click', e => { 
+					e.preventDefault(); 
+					this.handleOptionSelect(e.target) 
+				})
+			}
+		}
+
+		handleOptionSelect(option) {
+			const value = option.getAttribute('data-value')
+			const text = option.innerText
+			this.input.value = value
+			this.label.innerHTML = text
+		}
+
+		build() {
+			const { id, name, value, title } = this.select
+			
+			// Container ------------ //
+			this.container = document.createElement("div")
+			this.container.id = `${id}-dropdown`
+			this.container.className = "dropdown",
+			this.container.role = "combobox",
+			this.container.tabIndex = "0",
+			this.container.setAttribute('aria-haspopup', "listbox"),
+			this.container.setAttribute('aria-expanded', "false"),
+			this.container.setAttribute('aria-labelledby', `${id}-label`),
+
+			// Label ------------ //
+			this.label = document.createElement("span")
+			this.label.id = `${id}-label`
+			this.label.classList.add('dropdown-label')
+			this.label.innerHTML = title
+			
+			// Icon ------------ //
+			this.icon = document.createElement("span")
+			this.icon.classList.add('dropdown-icon')
+			this.icon.innerHTML = `<svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.78711L8.5 9.93961L16 1.78711" stroke="#484747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+			
+			// hidden <input> to replace <select>  ------------ //
+			this.input = document.createElement("input")
+			this.input.id = id
+			this.input.name = name
+			this.input.value = value
+			this.input.type = "hidden"
+
+			// Options -------------- //
+			this.optionsContainer = document.createElement("div")
+			this.optionsContainer.classList.add('dropdown-options')
+			this.optionsContainer.setAttribute('aria-hidden', 'true')
+			this.optionsContainer.tabIndex = '-1'
+			this.optionsContainer.role = 'listbox'
+			this.options = {}
+
+			for (let i = 0; i < this.select.options.length; i++) {
+				const { id: optionId, value: optionValue, innerText } = this.select.options.item(i)
+				this.options[optionId] = this.buildOption(optionValue, innerText)
+			}
+			for (const optionId in this.options) {
+				this.optionsContainer.append(this.options[optionId])
+			}
+			
+			// Append nodes --------------- //
+			this.container.append(this.label, this.icon, this.input, this.optionsContainer)
+
+			// Append the dropown
+			this.parent.prepend(this.container)
+
+			// Remove Select --------------- //
+			this.select.remove()
+			
+		}
+
+		buildOption(value, text) {
+			const html = document.createElement('div')
+			html.classList.add('dropdown-option')
+			html.role = 'option'
+			html.setAttribute('aria-selected', 'false')
+			html.setAttribute('data-value', value)
+			html.innerText = text
+			return html
+		}
+	}
 
 	// Utilities ----------------------------- //
 	const Util = {

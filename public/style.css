@@ -1,4 +1,4 @@
-:root {
+.mercerForm {
 	--raspberry: #c00686;
 	--raspberry-highlight: #fff1fb;
 	--raspberry-dark: #930667;
@@ -19,9 +19,7 @@
 	--grid-gap: 1em;
 	--transition: all 200ms ease-out;
 	--transition-fast: all 100ms ease-out;
-}
 
-.mercerForm {
 	font-family: "Korolev", "Roboto", sans-serif;
 	font-size: 1rem;
 	line-height: 1;
@@ -157,7 +155,7 @@
 .mercerForm .page:nth-child(4) { transform: translateX(300%); }
 .mercerForm .page:nth-child(5) { transform: translateX(400%); }
 .mercerForm .page:nth-child(6) { transform: translateX(500%); } */
-/* .mercerForm .page:nth-child(7) { transform: translateX(130%); } */
+.mercerForm .page:nth-child(7) { opacity: 1; pointer-events: all; transform: translateX(130%); }
 
 .mercerForm .page.current {
 	position: relative;
@@ -314,19 +312,19 @@
 /* States */
 .mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):hover,
 .mercerForm .wForm .inputWrapper textarea:hover,
-.mercerForm .dropdown:hover,
-.mercerForm .dropdown:hover .dropdown-options {
+.mercerForm .wForm .inputWrapper .dropdown:hover,
+.mercerForm .wForm .inputWrapper .dropdown:hover .dropdown-options {
 	border-color: var(--black);
 }
 .mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus,
 .mercerForm .wForm .inputWrapper textarea:focus,
-.mercerForm .dropdown:focus,
-.mercerForm .dropdown:focus .dropdown-options {
+.mercerForm .wForm .inputWrapper .dropdown:focus,
+.mercerForm .wForm .inputWrapper .dropdown:focus .dropdown-options {
 	border-color: var(--raspberry);
 }
 .mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"])::placeholder,
 .mercerForm .wForm .inputWrapper textarea::placeholder,
-.mercerForm .dropdown-label {
+.mercerForm .wForm .inputWrapper .dropdown-label {
 	color: #444759 !important;
 	transition: opacity 200ms ease-out;
 }
