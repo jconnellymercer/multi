@@ -7,11 +7,18 @@
 		constructor(target, setOptions) {
 			this.el = target
 			this.form = this.el.tagName !== 'FORM' ? this.el.querySelector('form') : this.el
+			this.submitBtn = this.form.querySelector('[type="submit"]')
 			if ( typeof setOptions === 'function' ) {
 				setOptions()
 			}
 			this.customizeCaptcha();
 			document.querySelectorAll('[data-mercer-dropdown]').forEach( el => new Dropdown(el) )
+			this.form.addEventListener('submit', e => {
+				e.preventDefault()
+				this.form.classList.add('submitting');
+				this.submitBtn.value = wFORMS.behaviors.validation.messages.wait
+				this.submitBtn.disabled = true
+			});
 		}
 	
 		customizeCaptcha() {
@@ -37,7 +44,6 @@
 			this.loading = true
 			this.scrollY = window.scrollY
 			this.pages = this.form.querySelectorAll('.wfPage, .wfCurrentPage')
-			this.submitBtn = this.form.querySelector('[type="submit"]')
 			this.formProgress = new FormProgress(this.el.querySelector('.formProgress'), this.pages.length)
 
 			window.wFORMS.behaviors.paging.onPageChange = (page) => this.onPageChange(page)
