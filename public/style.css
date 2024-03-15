@@ -37,8 +37,6 @@
 	background: none;
   color: var(--black);
   border: none;
-	container-type: inline-size;
-	container-name: form;
 }
 
 .mercerForm .wForm form {
@@ -64,7 +62,7 @@
 	display: flex;
 	flex-direction: column;
 }
-@container form (min-width:415px) {
+@media(min-width:500px) {
 	.mercerForm .formHeader {
 		flex-direction: row;
 		align-items: flex-end;
@@ -89,7 +87,7 @@
 	align-items: flex-start;
 	margin-top: 0.5em;
 }
-@container form (min-width:415px) {
+@media(min-width:500px) {
 	.mercerForm .formHeader--right {
 		align-items: flex-end;
 		margin-top: 0;
@@ -363,7 +361,10 @@
 
 .mercerForm .tiles input[type="radio"], 
 .mercerForm .tiles input[type="checkbox"] {	
-	display: none;
+	display: block;
+	width: 0;
+	height: 0;
+	overflow: hidden;
 }
 .mercerForm .tiles .tile .label {	
 	background-color: var(--offwhite);
@@ -394,9 +395,13 @@
 	color: var(--raspberry);
 }
 
+.mercerForm .tiles .tile input:focus + .label,
 .mercerForm .tiles .tile input:is(:checked) + .label {
 	box-shadow: inset 0 0 0 2px var(--raspberry);
 	color: var(--raspberry);
+}
+
+.mercerForm .tiles .tile input:is(:checked) + .label {
 	background-color: var(--raspberry-highlight);
 }
 
@@ -463,6 +468,13 @@
 	background-color: var(--raspberry-dark);
 	border: 2px solid var(--raspberry-dark);
 	color: #fff;
+}
+
+.mercerForm button:focus, 
+.mercerForm input[type="button"]:focus, 
+.mercerForm input[type="submit"]:focus, 
+.mercerForm .actions .primaryAction:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 4px var(--raspberry);
 }
 
 .mercerForm button.outline,
