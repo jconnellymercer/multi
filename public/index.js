@@ -270,29 +270,68 @@
 		}
 
 		toggleOpen(val) {
+			let isOpen
 			if ( val === undefined ) {
 				this.container.classList.toggle('open')
+				isOpen = !this.open
 			} else if ( val === true ) {
 				this.container.classList.add('open')
+				isOpen = true
 			} else {
 				this.container.classList.remove('open')
+				isOpen = false
 			}
+			return isOpen
 		}
 
 		bindEvents() {
 			document.addEventListener('click', e => {
 				this.toggleOpen(false)
 			})
+			
 			this.container.addEventListener('click', e => {
 				e.preventDefault()
 				e.stopPropagation()
-				this.toggleOpen()
+				const isOpen = this.toggleOpen()
+				console.log('isOpen has been set to: ', typeof isOpen, ' : ', isOpen);
+				if ( isOpen ) {
+					console.log('adding event listener');
+					this.container.addEventListener('keydown', handleDropdownArrowKeys)
+				} else {
+					console.log('removing event listener');
+					this.container.removeEventListener('keydown', handleDropdownArrowKeys)
+				}
 			})
+		
+			this.container.addEventListener("focus", e => {
+				// listen for arrow up/down keys to focus options
+			})
+			this.container.addEventListener("blur", e => {
+				this.toggleOpen(false)
+				// remove listener for arrow up/down keys
+			})
+
 			for (const optionId in this.options) {
 				this.options[optionId].addEventListener('click', e => { 
 					e.preventDefault(); 
 					this.handleOptionSelect(e.target) 
 				})
+			}
+
+			this.container.addEventListener("keydown", e => {
+				if ( e.code === 'Space' ) {
+					this.toggleOpen()
+				}
+			})
+
+			const handleDropdownArrowKeys = e => {
+				console.log('handleDropdownArrowKeys');
+				if ( e.code === 'ArrowUp' ) {
+					console.log('arrow up');
+				}
+				if ( e.code === 'ArrowDown' ) {
+					console.log('arrow down');
+				}
 			}
 		}
 
@@ -362,13 +401,14 @@
 		}
 
 		buildOption(value, text) {
-			const html = document.createElement('div')
-			html.classList.add('dropdown-option')
-			html.role = 'option'
-			html.setAttribute('aria-selected', 'false')
-			html.setAttribute('data-value', value)
-			html.innerText = text
-			return html
+			const optionDiv = document.createElement('div')
+			optionDiv.classList.add('dropdown-option')
+			optionDiv.role = 'option'
+			optionDiv.setAttribute('aria-selected', 'false')
+			optionDiv.setAttribute('data-value', value)
+			optionDiv.tabIndex = "-1";
+			optionDiv.innerText = text
+			return optionDiv
 		}
 	}
 
