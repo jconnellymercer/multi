@@ -125,7 +125,7 @@
 
 			// watch fields if there are required inputs
 			if ( this.requiredInputs.length ) {
-				// this.__proxy.dataValid = false
+				this.__proxy.dataValid = false
 				this.watchFields()
 			}
 		}

@@ -155,7 +155,7 @@
 .mercerForm .page:nth-child(4) { transform: translateX(300%); }
 .mercerForm .page:nth-child(5) { transform: translateX(400%); }
 .mercerForm .page:nth-child(6) { transform: translateX(500%); } */
-.mercerForm .page:nth-child(7) { opacity: 1; pointer-events: all; transform: translateX(130%); }
+/* .mercerForm .page:nth-child(7) { opacity: 1; pointer-events: all; transform: translateX(130%); } */
 
 .mercerForm .page.current {
 	position: relative;
