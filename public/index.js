@@ -18,6 +18,7 @@
 				this.form.classList.add('submitting');
 				this.submitBtn.value = wFORMS.behaviors.validation.messages.wait
 				this.submitBtn.disabled = true
+				return true
 			});
 		}
 	
@@ -66,6 +67,9 @@
 		moveLastPageButtons() {
 			const lastPage = this.pages[this.pages.length - 1]
 			const lastPageBtnContainer = this.form.querySelector('.last-page-previous-button')
+			const clonedSubmit = this.submitBtn.cloneNode(true)
+			this.submitBtn.style.display = 'none';
+			this.submitBtn = clonedSubmit
 			lastPageBtnContainer.appendChild(this.submitBtn)
 			lastPage.appendChild(lastPageBtnContainer)
 		}
@@ -260,82 +264,129 @@
 		icon = null
 		input = null
 		optionsContainer = null
-		open = false
+		options = {}
+		data = {
+			open: false,
+			activeOptionId: null
+		}
 
 		constructor(el) {
 			this.select = el
 			this.parent = el.parentElement
 			this.build()
 			this.bindEvents()
+			this.data = new Proxy(this.data, this.dataHandler())
 		}
 
-		toggleOpen(val) {
-			let isOpen
-			if ( val === undefined ) {
-				this.container.classList.toggle('open')
-				isOpen = !this.open
-			} else if ( val === true ) {
-				this.container.classList.add('open')
-				isOpen = true
-			} else {
-				this.container.classList.remove('open')
-				isOpen = false
+		dataHandler() {
+			const __this = this
+			return  {
+				get: function(data, prop) {
+					return data[prop];
+				},
+				set(data, prop, value) {
+					
+					if ( prop === 'open' ) {
+						let isOpen = value
+						if ( isOpen ) {
+							__this.container.classList.add('open')
+							if ( ! __this.data.activeOptionId ) {
+								__this.data.activeOptionId = Object.keys(__this.options)[0]
+							} else {
+								__this.data.activeOptionId = Object.keys(__this.input.value)
+							}
+						} else {
+							__this.container.classList.remove('open')
+						}
+					}
+	
+					if ( prop === 'activeOptionId' ) {
+						let activeOptionId = value
+						for ( let optionId in __this.options ) {
+							if ( optionId === activeOptionId ) {
+								__this.options[optionId].classList.add('active')
+							} else {
+								__this.options[optionId].classList.remove('active')
+							}
+						}
+					}
+					
+					data[prop] = value
+					return true
+				}
 			}
-			return isOpen
+		}
+
+		events = {
+			document: {
+				click: e => {
+					if ( this.data.open && ! this.container.contains(e.target) ) {
+						this.data.open = false
+					}
+				}
+			},
+			container: {
+				blur: e => {
+					this.data.open = false
+				},
+				click: e => {
+					e.preventDefault()
+					e.stopPropagation()
+					this.data.open = !this.data.open
+				},
+				focus: e => {
+
+				},
+				keydown: e => {
+					if ( e.code === 'ArrowUp' && this.data.open ) {
+						let activeOptionIndex = Object.keys(this.options).indexOf(this.data.activeOptionId)
+						let nextActiveIndex = Math.max(0, activeOptionIndex - 1)
+						this.data.activeOptionId = Object.keys(this.options)[nextActiveIndex]
+					}
+					if ( e.code === 'ArrowDown' && this.data.open ) {
+						let activeOptionIndex = Object.keys(this.options).indexOf(this.data.activeOptionId)
+						let nextActiveIndex = Math.min(Object.keys(this.options).length - 1, activeOptionIndex + 1)
+						this.data.activeOptionId = Object.keys(this.options)[nextActiveIndex]
+					}
+					if ( e.code === 'Enter' && this.data.open ) {
+						e.preventDefault()
+						e.stopPropagation()
+						this.selectOption(this.options[this.data.activeOptionId])
+						this.data.open = false
+					}
+					if ( e.code === 'Escape' ) {
+						this.data.open = false
+					}
+					if ( e.code === 'Space' ) {
+						this.data.open = !this.data.open
+					}
+				},
+			},
+			options: {
+				click: e => { 
+					e.preventDefault()
+					e.stopPropagation()
+					this.selectOption(e.target)
+					this.data.open = false
+				}
+			}
 		}
 
 		bindEvents() {
-			document.addEventListener('click', e => {
-				this.toggleOpen(false)
-			})
+			document.addEventListener('click', this.events.document.click)
 			
-			this.container.addEventListener('click', e => {
-				e.preventDefault()
-				e.stopPropagation()
-				const isOpen = this.toggleOpen()
-				console.log('isOpen has been set to: ', typeof isOpen, ' : ', isOpen);
-				if ( isOpen ) {
-					console.log('adding event listener');
-					this.container.addEventListener('keydown', handleDropdownArrowKeys)
-				} else {
-					console.log('removing event listener');
-					this.container.removeEventListener('keydown', handleDropdownArrowKeys)
-				}
-			})
-		
-			this.container.addEventListener("focus", e => {
-				// listen for arrow up/down keys to focus options
-			})
-			this.container.addEventListener("blur", e => {
-				this.toggleOpen(false)
-				// remove listener for arrow up/down keys
-			})
+			this.container.addEventListener("blur", this.events.container.blur)
+			this.container.addEventListener('click', this.events.container.click)
+			this.container.addEventListener("focus", this.events.container.focus)
+			this.container.addEventListener("keydown", this.events.container.keydown)
 
 			for (const optionId in this.options) {
-				this.options[optionId].addEventListener('click', e => { 
-					e.preventDefault(); 
-					this.handleOptionSelect(e.target) 
-				})
+				this.options[optionId].addEventListener('click', this.events.options.click)
 			}
 
-			this.container.addEventListener("keydown", e => {
-				if ( e.code === 'Space' ) {
-					this.toggleOpen()
-				}
-			})
-
-			const handleDropdownArrowKeys = e => {
-				console.log('handleDropdownArrowKeys');
-				if ( e.code === 'ArrowUp' ) {
-					console.log('arrow up');
-				}
-				if ( e.code === 'ArrowDown' ) {
-					console.log('arrow down');
-				}
-			}
 		}
 
-		handleOptionSelect(option) {
+		selectOption(option) {
 			const value = option.getAttribute('data-value')
 			const text = option.innerText
 			this.input.value = value
@@ -377,7 +428,6 @@
 			this.optionsContainer = document.createElement("div")
 			this.optionsContainer.classList.add('dropdown-options')
 			this.optionsContainer.setAttribute('aria-hidden', 'true')
-			this.optionsContainer.tabIndex = '-1'
 			this.optionsContainer.role = 'listbox'
 			this.options = {}
 
@@ -406,7 +456,6 @@
 			optionDiv.role = 'option'
 			optionDiv.setAttribute('aria-selected', 'false')
 			optionDiv.setAttribute('data-value', value)
-			optionDiv.tabIndex = "-1";
 			optionDiv.innerText = text
 			return optionDiv
 		}

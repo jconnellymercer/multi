@@ -292,7 +292,7 @@
 }
 .mercerForm .dropdown.open .dropdown-options {
 	opacity: 1;
-	max-height: 180px;
+	max-height: 250px;
 	pointer-events: all;
 }
 .mercerForm .dropdown-option {
@@ -303,8 +303,14 @@
 	transition: var(--transition);
 }
 .mercerForm .dropdown-option:hover,
-.mercerForm .dropdown-option:focus {
+.mercerForm .dropdown-option:focus,
+.mercerForm .dropdown-option.active {
 	background-color: var(--grey-900);
+}
+.mercerForm .dropdown-option.selected {
+	background-color: var(--raspberry);
+	color: #fff;
+	font-weight: bold;
 }
 
 /* States */
@@ -434,11 +440,15 @@
 	margin-top: 2.25em;
 }
 
+.mercerForm .actions.multipage {
+	display: none;
+}
+
 .mercerForm button,
 .mercerForm input[type="button"],
 .mercerForm input[type="submit"],
 .mercerForm .actions .primaryAction {
-  -webkit-appearance: none;
+  appearance: none;
 	font-weight: bold;
 	font-size: var(--button-font-size);
 	background-color: var(--raspberry);
