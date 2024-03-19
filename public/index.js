@@ -18,6 +18,7 @@
 				this.form.classList.add('submitting');
 				this.submitBtn.value = wFORMS.behaviors.validation.messages.wait
 				this.submitBtn.disabled = true
+				this.form.submit()
 				return true
 			});
 		}
@@ -116,9 +117,9 @@
 
 			// gather array of data about fields
 			this.el.querySelectorAll('input[required]').forEach( input => {
-				const { pattern, type, value } = input
+				const { type, value } = input
 				this.requiredInputs.push({
-					el: input, pattern, type, value,
+					el: input, type, value,
 					autoformat: input.getAttribute("autoformat"),
 				})
 			} )
@@ -141,10 +142,27 @@
 		}
 
 		watchFields() {
+
+			// mask fields
+			this.el.querySelectorAll('input[data-mask]').forEach(input => {
+				const mask = input.getAttribute('data-mask')
+				input.addEventListener("input", e => {
+					if ( mask === 'phone' ) {
+						e.target.value = this.maskPhoneNumber(e.target)
+					}
+					if ( mask === 'zip' ) {
+						e.target.value = this.maskZip(e.target)
+					}
+					if ( mask === 'year' ) {
+						e.target.value = this.maskYear(e.target)
+					}
+				})
+			})
+
 			this.requiredInputs.forEach( (input, i) => {
 
 				input.el.addEventListener("blur", e => {
-					if ( ! this.validateInput(input) ) {
+					if ( ! this.validate(input.value, input.el.getAttribute('data-pattern') ) ) {
 						this.setError(input)
 					} else {
 						this.clearError(input)
@@ -162,9 +180,6 @@
 				}
 
 				input.el.addEventListener("input", e => {
-					if ( input.type === 'tel' ) {
-						e.target.value = this.maskPhoneNumber(e.target)
-					}
 					this.requiredInputs[i].value = e.target.value
 					this.validateFields()
 				})
@@ -176,7 +191,7 @@
 				if ( isValid === false ) {
 					return isValid
 				}
-				return this.validateInput(input)
+				return this.validate(input.value, input.el.getAttribute('data-pattern'))
 			}, true)
 
 			this.__proxy.dataValid = allFieldsValid
@@ -188,28 +203,12 @@
 			return allFieldsValid
 		}
 
-		validateInput(input) {
-			switch (input.type) {
-				case "email": {
-					return this.validateEmail(input.value)
-				}
-				case "tel": {
-					return this.validateTelephone(input.value)
-				}
-				default: {
-					return input.value.length > 0
-				}
+		validate(value, regex) {
+			if ( ! regex ) {
+				return value.length > 0
 			}
-		}
-
-		validateTelephone(value) {
-			const telRegEx = /^\d{3}-\d{3}-\d{4}$/g
-			return telRegEx.test(value)
-		}
-
-		validateEmail(value) {
-			const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/g
-			return emailRegEx.test(value)
+			regex = new RegExp(regex);
+			return regex.test(value)
 		}
 
 		maskPhoneNumber(input) {
@@ -221,6 +220,16 @@
 				val = val.substring(0, 7) + '-' + val.substring(7);
 			}
 			return val.substring(0,12);
+		}
+		
+		maskZip(input) {
+			let val = input.value.replace(/\D/g, ''); // Remove non-digit characters
+			return val.substring(0,5);
+		}
+		
+		maskYear(input) {
+			let val = input.value.replace(/\D/g, ''); // Remove non-digit characters
+			return val.substring(0,4);
 		}
 
 		setError(input) {
@@ -394,7 +403,7 @@
 		}
 
 		build() {
-			const { id, name, value, title } = this.select
+			const { id, name, title } = this.select
 			
 			// Container ------------ //
 			this.container = document.createElement("div")
@@ -421,7 +430,6 @@
 			this.input = document.createElement("input")
 			this.input.id = id
 			this.input.name = name
-			this.input.value = value
 			this.input.type = "hidden"
 
 			// Options -------------- //

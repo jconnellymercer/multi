@@ -131,16 +131,16 @@
                                         </div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_7-D">
-                                        <div class="inputWrapper"><input id="tfa_7" name="tfa_7" placeholder="Email Address" title="Email" type="email" required></div>
+                                        <div class="inputWrapper"><input id="tfa_7" name="tfa_7" placeholder="Email Address" data-pattern="[\w-\.]+@([\w-]+\.)+[\w-]{2,}" title="Email" type="email" required></div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_8-D">
-                                        <div class="inputWrapper"><input id="tfa_8" name="tfa_8" placeholder="Phone Number" autoformat="###-###-####" title="Phone Number" type="tel" required></div>
+                                        <div class="inputWrapper"><input id="tfa_8" name="tfa_8" placeholder="Phone Number" data-mask="phone" data-pattern="\d{3}-\d{3}-\d{4}" title="Phone Number" type="tel" required></div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_9-D">
-                                        <div class="inputWrapper"><input id="tfa_9" name="tfa_9" placeholder="Zip Code (Optional)" title="Zip Code (optional)" type="number"></div>
+                                        <div class="inputWrapper"><input id="tfa_9" name="tfa_9" placeholder="Zip Code (Optional)" data-mask="zip" title="Zip Code (optional)" type="number" min="00500" max="99999"></div>
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_10-D">
-                                        <div class="inputWrapper"><input id="tfa_10" name="tfa_10" placeholder="Birth Year (Optional)" title="Birth Year (optional)" type="number"></div>
+                                        <div class="inputWrapper"><input id="tfa_10" name="tfa_10" placeholder="Birth Year (Optional)" data-mask="year" title="Birth Year (optional)" type="number" min="1900" max="2024"></div>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                                                     <input type="radio" value="tfa_109" id="tfa_109" name="tfa_40" aria-labelledby="tfa_109-L" data-tfa-labelledby="tfa_40-L tfa_109-L" data-tfa-parent-id="tfa_40">
                                                     <label class="label square postField" id="tfa_109-L" for="tfa_109">
                                                         <b class="title">No, but I had one</b>
-                                                        <svg class="icon" width="52" height="56" viewBox="0 0 52 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.5893 12.7857C26.4007 12.7857 28.5 10.524 28.5 7.7349V6.05081C28.5 3.26167 26.4007 1 23.5893 1C20.7779 1 18.6786 3.26167 18.6786 6.05081V7.7349C18.6786 10.524 20.7779 12.7857 23.5893 12.7857Z" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/><path d="M31.4464 11.8037V13.5975C31.4464 14.0365 31.2178 14.4428 30.8446 14.6678L28.4047 16.1443C27.5417 16.5787 26.5884 16.8037 25.6227 16.8037H20.25C15.7916 16.8037 12.7857 18.6928 12.7857 24.3037V34.3037C12.7857 37.0537 15.025 39.3037 17.7619 39.3037" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/><path d="M29.4821 56.0004V26.0961C29.4821 25.498 29.7129 24.9214 30.1303 24.4713L36.8253 15.9574C37.1592 15.5319 37.3393 15.0186 37.3393 14.4898V12.0095C37.3393 11.3559 37.0626 10.7284 36.5716 10.266L31.9473 5.91113" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/><path d="M23.5893 36.3574V56.0003" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/><path d="M17.6964 23.5889V55.9996" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/><path d="M46.1786 16.7139V18.6782" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/><path d="M42.25 5.46805C42.25 3.37166 43.8158 1.98242 46.1786 1.98242C48.4915 1.98242 50.1071 3.41586 50.1071 5.46805C50.1071 6.66872 49.1225 7.99019 48.1412 8.68555C46.5339 9.82434 46.1221 10.7643 46.1221 12.5896V13.7681" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/><path d="M4.92859 22.6074V25.5539" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/><path d="M1 11.3606C1 9.26424 2.37006 7.875 4.4375 7.875C6.46135 7.875 7.875 9.30844 7.875 11.3606C7.875 12.5613 7.01345 13.8828 6.1548 14.5781C4.74842 15.7169 4.3881 16.6568 4.3881 18.4821V19.6607" stroke="#C00686" stroke-width="2" stroke-miterlimit="10"/></svg>                                                        
+                                                        <svg class="icon" width="47" height="55" viewBox="0 0 47 55" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_2093_2)"><path d="M29.6081 40.2081L35.5297 44.9454L40.267 54.42M37.8984 33.1614L45.0043 36.7143M45.3241 54.4792L40.267 42.5767L35.5297 36.6551V24.8711" stroke="#C00686" stroke-width="2" stroke-linejoin="round"/><path d="M24.8708 54.4197L30.7924 43.7607" stroke="#C00686" stroke-width="2" stroke-linejoin="round"/><path d="M46.1887 33.1606L35.5297 24.8704C35.5297 22.8925 33.2322 21.3174 31.5267 21.3174H29.5726C28.8502 21.3174 28.1751 21.649 27.7251 22.2056L17.7767 34.3449" stroke="#C00686" stroke-width="2" stroke-linejoin="round"/><path d="M20.1335 37.8984L29.6081 28.4238" stroke="#C00686" stroke-width="2" stroke-linejoin="round"/><path d="M32.5689 17.7646C34.8582 17.7646 36.714 15.6437 36.714 13.0273C36.714 10.411 34.8582 8.29004 32.5689 8.29004C30.2796 8.29004 28.4238 10.411 28.4238 13.0273C28.4238 15.6437 30.2796 17.7646 32.5689 17.7646Z" stroke="#C00686" stroke-width="2" stroke-linejoin="round"/><path d="M27.2395 30.792V37.8979V37.8387L19.6124 54.4193" stroke="#C00686" stroke-width="2" stroke-linejoin="round"/><path d="M29.6081 4.73754V1.18457H1.18433V50.9262H16.5805" stroke="#C00686" stroke-width="2" stroke-linejoin="round"/><path d="M5.92163 27.2393H10.6589" stroke="#C00686" stroke-width="2" stroke-linejoin="round"/></g><defs><clipPath id="clip0_2093_2"><rect width="46.9111" height="55" fill="white"/></clipPath></defs></svg>
                                                         <span class="text">I've had an advisor before, but don't have one today.</span>
                                                     </label>
                                                 </span>
@@ -347,7 +347,7 @@
                                     </div>
                                     <div class="oneField field-container-D labelsRemoved" id="tfa_160-D" >
                                         <div class="inputWrapper">
-                                            <select data-mercer-dropdown class="dropdown" id="tfa_160" name="tfa_160" title="How did you hear about us?">
+                                            <select data-mercer-dropdown class="dropdown" id="tfa_160" name="tfa_160" title="How did you hear about us? ">
                                                 <option value="tfa_161" id="tfa_161" class="">Google/Search Engine</option>
                                                 <option value="tfa_162" id="tfa_162" class="">Facebook Ad</option>
                                                 <option value="tfa_163" id="tfa_163" class="">LinkedIn Ad</option>
