@@ -8,19 +8,26 @@
 			this.el = target
 			this.form = this.el.tagName !== 'FORM' ? this.el.querySelector('form') : this.el
 			this.submitBtn = this.form.querySelector('[type="submit"]')
+			
 			if ( typeof setOptions === 'function' ) {
 				setOptions()
 			}
+			
 			this.customizeCaptcha();
+
 			document.querySelectorAll('[data-mercer-dropdown]').forEach( el => new Dropdown(el) )
+			
 			this.form.addEventListener('submit', e => {
-				e.preventDefault()
 				this.form.classList.add('submitting');
 				this.submitBtn.value = wFORMS.behaviors.validation.messages.wait
 				this.submitBtn.disabled = true
-				this.form.submit()
-				return true
 			});
+			
+			window.wFORMS.behaviors.validation.onFail = () => {
+				this.form.classList.remove('submitting');
+				this.submitBtn.value = "Submit"
+				this.submitBtn.disabled = false
+			}
 		}
 	
 		customizeCaptcha() {
@@ -403,7 +410,7 @@
 		}
 
 		build() {
-			const { id, name, title } = this.select
+			const { id, name, title, required } = this.select
 			
 			// Container ------------ //
 			this.container = document.createElement("div")
@@ -431,6 +438,10 @@
 			this.input.id = id
 			this.input.name = name
 			this.input.type = "hidden"
+			if ( required ) {
+				this.input.required = required
+				this.input.classList.add("required")
+			}
 
 			// Options -------------- //
 			this.optionsContainer = document.createElement("div")
