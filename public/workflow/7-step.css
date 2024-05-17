@@ -1,0 +1,43 @@
+.wFormContainer .choices.horizontal .oneChoice .label .input-radio-faux {
+	order: 1;
+}
+.wFormContainer .choices.horizontal .oneChoice .label .input-radio-faux:before {
+	content: "";
+	height: 40px;
+	margin: 1em auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: block;
+}
+.wFormContainer .choices.horizontal .oneChoice .label .input-radio-faux:after {
+  font-weight: 400;
+}
+
+#tfa_7.choices.horizontal .oneChoice:nth-child(1) .label .input-radio-faux:before {
+  background-image: url('data:image/svg+xml,<svg width="26" height="55" viewBox="0 0 26 55" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_2138_369)"><path d="M20.0909 37.4466C22.6436 37.4466 24.8181 35.0477 24.8181 32.7658V22.2339C24.8181 18.3722 17.1009 16.3828 12.9999 16.3828C8.89904 16.3828 1.18176 18.3722 1.18176 22.2339V32.7658C1.18176 35.0477 3.35631 37.4466 5.90904 37.4466" stroke="%23C00686" stroke-linejoin="round"/><path d="M13 12.872C15.7536 12.872 17.7273 10.9646 17.7273 8.1912V5.85077C17.7273 3.07737 15.7536 1.16992 13 1.16992C10.2463 1.16992 8.27271 3.07737 8.27271 5.85077V8.1912C8.27271 10.9646 10.2463 12.872 13 12.872Z" stroke="%23C00686" stroke-linejoin="round"/><path d="M20.0909 54.9998V24.5742" stroke="%23C00686" stroke-linejoin="round"/><path d="M5.90906 24.5742V54.9998" stroke="%23C00686" stroke-linejoin="round"/><path d="M13 36.2764V54.9998" stroke="%23C00686" stroke-linejoin="round"/></g><defs><clipPath id="clip0_2138_369"><rect width="26" height="55" fill="white"/></clipPath></defs></svg>');
+}
+#tfa_7.choices.horizontal .oneChoice:nth-child(1) .label .input-radio-faux:after {
+  content: "I'm mostly seeking advice just for myself.";
+}
+
+#tfa_7.choices.horizontal .oneChoice:nth-child(2) .label .input-radio-faux:before {
+  background-image: url('data:image/svg+xml,<svg width="60" height="55" viewBox="0 0 60 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50.6916 27.5V53.6905H36.2869V35.3571L23.1916 37.5V53.6905H8.78687V27.5" stroke="%23C00686" stroke-linejoin="round"/><path d="M0.92981 30.1191L26.2038 4.84511C28.1564 2.89248 31.3222 2.89248 33.2749 4.8451L58.5489 30.1191" stroke="%23C00686" stroke-linejoin="round"/><path d="M17.9536 7.85724V2.61914H11.406V14.4049" stroke="%23C00686" stroke-linejoin="round"/><path d="M19 12.4586C24.4768 14.4173 30.7359 10.5478 37 9" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22.0559C23 24 26.5 13.0003 46 18.0006" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 29.5C22.5 31.7968 33 17.5004 52.5 24.5002" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M50.5 30.9658C31.5 25.5 22.5 36.7608 9 35.9992" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+#tfa_7.choices.horizontal .oneChoice:nth-child(2) .label .input-radio-faux:after {
+  content: "We are seeking advice together.";
+}
+
+#tfa_7.choices.horizontal .oneChoice:nth-child(3) .label .input-radio-faux:before {
+  background-image: url('data:image/svg+xml,<svg width="39" height="57" viewBox="0 0 39 57" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.6607 1C15.9392 1.00438 12.6246 3.34896 11.3894 6.84905C7.73085 6.16479 4.03716 7.85575 2.17129 11.067C0.314202 14.2826 0.693229 18.3152 3.11667 21.1325C0.691766 23.9498 0.314202 27.9853 2.17129 31.2009C4.0357 34.4121 7.72939 36.1016 11.388 35.4188C12.6231 38.9204 15.9378 41.2635 19.6607 41.2679C23.3822 41.2635 26.6969 38.9189 27.932 35.4188C31.5906 36.1031 35.2843 34.4121 37.1501 31.2009C39.0072 27.9853 38.6282 23.9527 36.2048 21.1354C38.6297 18.3181 39.0072 14.2826 37.1501 11.067C35.2857 7.85575 31.592 6.16625 27.9335 6.84905C26.6983 3.3475 23.3837 1.00438 19.6607 1Z" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.6608 56.0001V18.6787" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.7858 23.5889L19.6608 30.4639L26.5358 23.5889" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.75 56H24.5714" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+#tfa_7.choices.horizontal .oneChoice:nth-child(3) .label .input-radio-faux:after {
+  content: "I'm seeking an advisor who can work with my parents.";
+}
+
+#tfa_7.choices.horizontal .oneChoice:nth-child(4) .label .input-radio-faux:before {
+  background-image: url('data:image/svg+xml,<svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M31.4216 35.0476V30.2135C31.4216 26.2254 25.1131 24.1709 21.7534 24.1709C18.3937 24.1709 12.0852 26.2254 12.0852 30.2135V35.0476" stroke="%23C00686" stroke-linejoin="round"/><path d="M21.7534 20.5452C24.5693 20.5452 26.5875 18.5753 26.5875 15.7111V13.2941C26.5875 10.4299 24.5693 8.45996 21.7534 8.45996C18.9375 8.45996 16.9193 10.4299 16.9193 13.2941V15.7111C16.9193 18.5753 18.9375 20.5452 21.7534 20.5452Z" stroke="%23C00686" stroke-linejoin="round"/><path d="M21.7534 42.2989C33.1001 42.2989 42.2984 33.1006 42.2984 21.7539C42.2984 10.4073 33.1001 1.20898 21.7534 1.20898C10.4068 1.20898 1.2085 10.4073 1.2085 21.7539C1.2085 33.1006 10.4068 42.2989 21.7534 42.2989Z" stroke="%23C00686" stroke-linejoin="round"/><path d="M38.1169 34.7334L52.2204 48.6314C53.4169 49.8037 53.4169 51.7374 52.2325 52.9217C51.0602 54.094 49.1628 54.1061 47.9785 52.9338L33.8387 39.0116" stroke="%23C00686" stroke-linejoin="round"/><path d="M43 48C44.3747 46.8751 46.0087 45.8633 48 45" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 44C40.3747 42.8751 42.0087 41.8633 44 41" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 41C37.3747 39.8751 39.0087 38.8633 41 38" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/><path d="M47 52C48.3747 50.8751 50.0087 49.8633 52 49" stroke="%23C00686" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+#tfa_7.choices.horizontal .oneChoice:nth-child(4) .label .input-radio-faux:after {
+  content: "I'm seeking advice for a friend.";
+}

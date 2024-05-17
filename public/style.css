@@ -1,87 +1,93 @@
-.mercerForm {
+.wFormContainer {
 	--raspberry: #c00686;
-	--raspberry-highlight: #fff1fb;
+	--raspberry-highlight: #fffafe;
 	--raspberry-dark: #930667;
 	--black: #454759;
 	--offwhite: #fcfcfc;
-	--grey-900: #f1f1f1;
+	--grey-900: #e9e9e9;
 	--grey-800: #cdcdcd;
 	--grey-700: #c5c5c5;
 	--grey-600: #a2a2a2;
+	--grey-500: #999999;
 	--error: #FF0000;
-	--button-border-radius: 15px;
-	--button-font-size: 1.15em;
-	--button-padding: 0.85em 0.5em;
-	--input-box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,0.05);
+	--button-border-radius: 12px;
+	--button-font-size: 1rem;
+	--button-padding: 1.25em 0.5em;
+	--input-box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
 	--input-border-radius: 6px;
 	--input-border-color: 6px;
 	--input-border-width: 1px;
 	--grid-gap: 1em;
 	--transition: all 200ms ease-out;
 	--transition-fast: all 100ms ease-out;
+	--primary-font: "IBM Plex Sans", "Roboto", sans-serif;
+	--secondary-font: "Merriweather", "Georgia", serif;
 
-	font-family: "Korolev", "Roboto", sans-serif;
-	font-size: 1rem;
+	font-family: var(--primary-font);
+	font-size: 0.875rem;
 	line-height: 1;
-	font-weight: 500;
-}
-@media(min-width:768px) {
-	.mercerForm { font-size: 1.125rem; }
+	font-weight: 400;
 }
 
-.mercerForm * {
+.wFormContainer * {
 	outline: none;
 } 
 
-.mercerForm .wForm {
+.wFormContainer .wForm {
 	background: none;
   color: var(--black);
   border: none;
-}
-
-.mercerForm .wForm form {
 	padding: 0;
 }
 
-.mercerForm .htmlSection {
-	line-height: 1.2;
-	margin: 0;
+.wFormContainer .wForm form {
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--grid-gap);
 }
 
-.mercerForm .faded {
+.wFormContainer .wForm form div[style="clear: both"] {
+	display: none;
+}
+
+.wFormContainer .htmlSection {
+	line-height: 1.2;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.wFormContainer .faded {
 	opacity: 0.7;
 }
 
-.mercerForm .wFormFooter .supportInfo {
+.wFormContainer .supportInfo {
 	display: none;
 }
 
 /* Form Header --------------------- */
 
-.mercerForm .formHeader {
+.wFormContainer .formHeader {
 	display: flex;
 	flex-direction: column;
 }
 @media(min-width:500px) {
-	.mercerForm .formHeader {
+	.wFormContainer .formHeader {
 		flex-direction: row;
 		align-items: flex-end;
 		justify-content: space-between;
 	}
 }
 
-.mercerForm .formTitle {
-	font-size: 1.625em;
-	font-weight: bold;
+.wFormContainer .formTitle {
+	font-family: var(--secondary-font);
+	font-size: 1.5em;
+	font-weight: 400;
 	line-height: 1;
 }
-@media(min-width:768px) {
-	.mercerForm .formTitle {
-		font-size: 2em;
-	}
-}
 
-.mercerForm .formHeader--right {
+.wFormContainer .formHeader--right {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -89,58 +95,62 @@
 	overflow: hidden;
 	max-height: 3em;
 	transition: var(--transition);
+	font-size: 0.85em;
 }
-.mercerForm[data-current-page="1"] .formHeader--right {
+.wFormContainer[data-current-page="1"] .formHeader--right {
 	max-height: 0;
 	opacity: 0;
 }
 @media(min-width:500px) {
-	.mercerForm .formHeader--right {
+	.wFormContainer .formHeader--right {
 		align-items: flex-end;
 		margin-top: 0;
 	}
-	.mercerForm[data-current-page="1"] .formHeader--right {
+	.wFormContainer[data-current-page="1"] .formHeader--right {
 		transform: translate3d(20px,0,0);
 		max-height: none;
 	}
 }
 
-.mercerForm .formTimeEstimate {
-	font-size: 14px;
+.wFormContainer .formTimeEstimate {
 	line-height: 1.15;
 }
 
-.mercerForm .formProgress {
+.wFormContainer .formProgress {
 	display: flex;
 	align-items: center;
 	margin: 0.5em 0;
 }
-.mercerForm .formProgressBar {
+.wFormContainer .formProgressBar {
 	position: relative;
 	width: 84px;
 	height: 9px;
-	background-color: var(--grey-700);
+	background-color: var(--grey-900);
 	margin-right: 1em;
 }
-.mercerForm .formProgressBarInner {
+.wFormContainer .formProgressText {
+	font-size: 1.15em;
+	font-weight: 500;
+}
+.wFormContainer .formProgressBarInner {
 	background-color: var(--raspberry);
 	height: 100%;
 	width: 100%;
 	transform-origin: 0 0;
 	transition: transform 200ms ease-out;
 }
-.mercerForm .formProgressPage {
+.wFormContainer .formProgressPage {
 	display: inline-block;
 	width: 0.6em;
 	text-align: right;
 }
 
 /* Pages --------------------- */
-.mercerForm .pageWrapper {
+.wFormContainer .pageWrapper {
 	position: relative;
 }
 
-.mercerForm .page {
+.wFormContainer .page {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -152,137 +162,172 @@
 	transition: all 400ms ease-out;
 	transition-delay: 0ms;
 }
-/* .mercerForm .page:nth-child(2) { transform: translateX(100%); }
-.mercerForm .page:nth-child(3) { transform: translateX(200%); }
-.mercerForm .page:nth-child(4) { transform: translateX(300%); }
-.mercerForm .page:nth-child(5) { transform: translateX(400%); }
-.mercerForm .page:nth-child(6) { transform: translateX(500%); } */
-/* .mercerForm .page:nth-child(7) { opacity: 1; pointer-events: all; transform: translateX(130%); } */
 
-.mercerForm .page.current {
+.wFormContainer .page.current {
 	position: relative;
 	opacity: 1;
 	pointer-events: all;
 	transition-delay: 400ms;
 }
 
-.mercerForm .pageSection {
+.wFormContainer .pageSection {
 	display: flex;
 	flex-direction: column;
 	row-gap: var(--grid-gap);
+	margin-top: var(--grid-gap);
 	transform: translate3d(-30px,0,0);
 	transition: all 400ms ease-out;
 }
 
-.mercerForm .page.current + .page .pageSection {
+.wFormContainer .page.current + .page .pageSection {
 	transform: translate3d(30px,0,0);
 }
 
-.mercerForm .page.current .pageSection {
+.wFormContainer .page.current .pageSection {
 	transform: translate3d(0,0,0);
 	transition-delay: 400ms;
 }
 
-.formPageHeader {
+.wFormContainer .formPageHeader {
 	display: flex;
 	align-items: center;
-	border-bottom: 1px solid var(--grey-600);
-	padding: 1.25em 0;
 	margin: 0;
 }
 
-.formPageNumber {
+.wFormContainer .formPageNumber {
 	border-radius: 50%;
-	border: 2px solid var(--black);
-	flex: 0 0 2.25em;
-	font-weight: bold;
-	height: 2.25em;
+	border: 1px solid var(--black);
+	display: inline-block;
+	height: 2.1em;
 	margin-right: 0.75em;
 	position: relative;
 	text-align: center;
-	width: 2.25em;
+	width: 2.1em;
+	font-size: 1.3em;
+	flex-shrink: 0;
+	flex-grow: 0;
 }
 
-.formPageNumber span {
+.wFormContainer .formPageNumber span {
 	position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
 
-.mercerForm .formPageHeader .htmlSection {
-	min-height: 2.25em;
-	display: flex;
-	align-items: center;
-}
-
 
 /* Fields --------------------- */
-.mercerForm .inline.group {
+.wFormContainer .wForm .oneField {
+	position: relative;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+.wFormContainer .wForm .oneField br {
+	display: none;
+}
+
+.wFormContainer .inline.group {
 	display: flex;
 	column-gap: var(--grid-gap);
 }
 
-.mercerForm .wForm .inline.group .oneField {
+.wFormContainer .wForm .inline.group .oneField {
 	flex: 1 1 100%;
 }
 
-.mercerForm .wForm .inputWrapper {
+.wFormContainer .wForm .inputWrapper {
 	position: relative;
+	width: 100%;
 }
 
-/* Text fields */
-.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
-.mercerForm .wForm .inputWrapper textarea,
-.mercerForm .wForm .inputWrapper .dropdown {
-	background: var(--offwhite);
+.wFormContainer .oneField .errMsg {
+	font-size: 12px;
+	margin: 6px 0 0 6px;
+	color: red;
+	font-weight: 400;
+}
+
+/* Labels --------------------- */
+.wFormContainer .wForm .oneField > .label {
+	background-color: white;
+	left: 0.5em;
+	line-height: 1;
+	min-width: 0;
+	padding: 0.1em 0.5em;
+	pointer-events: none;
+	position: absolute;
+	top: 1.7em;
+	transform: translateY(-50%);
+	transition: all 50ms ease-out;
+	width: auto;
+	z-index: 1;
+}
+.wFormContainer .wForm .oneField.is-focused > .label,
+.wFormContainer .wForm .oneField.has-value > .label {
+	font-size: 12px;
+	transform: translateY(-2.4em);
+}
+.wFormContainer .wForm .oneField.is-focused > .label {
+	color: var(--raspberry);
+}
+
+/* Text fields -------------------- */
+.wFormContainer .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
+.wFormContainer .wForm .inputWrapper textarea,
+.wFormContainer .wForm .inputWrapper .dropdown {
+	background-color: #FFFFFF;
 	border-radius: var(--input-border-radius);
-	border: 1px solid var(--grey-800);
+	border: 1px solid var(--grey-500);
 	box-shadow: var(--input-box-shadow);
 	color: var(--black);
+	font-family: var(--primary-font);
 	font-size: 1em;
-	font-weight: 500;
+	font-weight: 400;
 	height: auto;
 	line-height: 1;
 	outline: 0;
 	padding: 1em;
 	transition: all 200ms ease-out;
 	width: 100%;
+	box-sizing: border-box;
 }
 
 /* Textarea */
-.mercerForm .wForm .inputWrapper textarea {
+.wFormContainer .wForm .inputWrapper textarea {
 	font-size: 1em;
 	line-height: 1.2;
 }
 
 /* Dropdowns */
-.mercerForm .dropdown {
+.wFormContainer .dropdown {
 	position: relative;
 	cursor: pointer;
 	box-shadow: var(--input-box-shadow);
+	min-height: 48px;
 }
-.mercerForm .dropdown.open {
+.wFormContainer .dropdown.open {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 }
-.mercerForm .dropdown-icon {
+.wFormContainer .dropdown-icon {
 	position: absolute;
 	top: 50%;
 	right: 1em;
 	transform: translateY(-50%);
 	transition: var(--transition);
 }
-.mercerForm .dropdown.open .dropdown-icon {
+.wFormContainer .dropdown.open .dropdown-icon {
 	transform: translateY(-50%) rotate(180deg);
 }
-.mercerForm .dropdown-options {
-	background-color: var(--offwhite);
+.wFormContainer .dropdown-options {
+	background-color: #ffffff;
 	border-bottom-left-radius: var(--input-border-radius);
 	border-bottom-right-radius: var(--input-border-radius);
 	border: 1px solid var(--grey-800);
 	border-top: 0;
 	box-shadow: inset 6px 0 4px -4px rgba(0,0,0,0.05);
+	box-sizing: border-box;
 	left: -1px;
 	max-height: 0px;
 	opacity: 0;
@@ -292,61 +337,60 @@
 	top: calc(100% - 3px);
 	transition: var(--transition);
 	width: calc(100% + 2px);
-	z-index: 1;
+	z-index: 2;
 }
-.mercerForm .dropdown.open .dropdown-options {
+.wFormContainer .dropdown.open .dropdown-options {
 	opacity: 1;
 	max-height: 250px;
 	pointer-events: all;
 }
-.mercerForm .dropdown-option {
-	font-size: 16px;
+.wFormContainer .dropdown-option {
 	line-height: 1;
 	padding: 0.7em 1em;
 	border-bottom: 1px solid var(--grey-900);
 	transition: var(--transition);
 }
-.mercerForm .dropdown-option:hover,
-.mercerForm .dropdown-option:focus,
-.mercerForm .dropdown-option.active {
+.wFormContainer .dropdown-option:hover,
+.wFormContainer .dropdown-option:focus,
+.wFormContainer .dropdown-option.active {
 	background-color: var(--grey-900);
 }
-.mercerForm .dropdown-option.selected {
+.wFormContainer .dropdown-option.selected {
 	background-color: var(--raspberry);
 	color: #fff;
 	font-weight: bold;
 }
 
 /* States */
-.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):hover,
-.mercerForm .wForm .inputWrapper textarea:hover,
-.mercerForm .wForm .inputWrapper .dropdown:hover,
-.mercerForm .wForm .inputWrapper .dropdown:hover .dropdown-options {
+.wFormContainer .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):hover,
+.wFormContainer .wForm .inputWrapper textarea:hover,
+.wFormContainer .wForm .inputWrapper .dropdown:hover,
+.wFormContainer .wForm .inputWrapper .dropdown:hover .dropdown-options {
 	border-color: var(--black);
 }
-.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus,
-.mercerForm .wForm .inputWrapper textarea:focus,
-.mercerForm .wForm .inputWrapper .dropdown:focus,
-.mercerForm .wForm .inputWrapper .dropdown:focus .dropdown-options {
+.wFormContainer .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus,
+.wFormContainer .wForm .inputWrapper textarea:focus,
+.wFormContainer .wForm .inputWrapper .dropdown:focus,
+.wFormContainer .wForm .inputWrapper .dropdown:focus .dropdown-options {
 	border-color: var(--raspberry);
 }
-.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"])::placeholder,
-.mercerForm .wForm .inputWrapper textarea::placeholder,
-.mercerForm .wForm .inputWrapper .dropdown-label {
+.wFormContainer .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"])::placeholder,
+.wFormContainer .wForm .inputWrapper textarea::placeholder,
+.wFormContainer .wForm .inputWrapper .dropdown-selection {
 	color: #444759 !important;
 	transition: opacity 200ms ease-out;
 }
-.mercerForm .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus::placeholder,
-.mercerForm .wForm .inputWrapper textarea:focus::placeholder {
+.wFormContainer .wForm .inputWrapper input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):focus::placeholder,
+.wFormContainer .wForm .inputWrapper textarea:focus::placeholder {
 	opacity: 0.4;
 }
 
 /* Error fields */
-.mercerForm .wForm .inputWrapper.error input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
-.mercerForm .wForm .inputWrapper.error textarea:hover {
+.wFormContainer .wForm .inputWrapper.error input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
+.wFormContainer .wForm .inputWrapper.error textarea:hover {
 	border-color: var(--error);
 }
-.mercerForm .wForm .inputWrapper .errorIcon {
+.wFormContainer .wForm .inputWrapper .errorIcon {
 	position: absolute;
 	top: 50%;
 	right: 1em;
@@ -356,109 +400,158 @@
 }
 
 /* Tiled Choices --------------------- */
-.mercerForm .tiles {
+.wFormContainer .tiles,
+.wFormContainer .choices {
 	display: flex;
 	flex-wrap: wrap;
 	column-gap: var(--grid-gap);
 	row-gap: var(--grid-gap);
 }
 
-.mercerForm .tile {
+.wFormContainer .tiles .tile,
+.wFormContainer .choices .oneChoice {
 	flex: 1 1 auto;
+	width: calc(100% - var(--grid-gap) / 2);
+}
+
+.wFormContainer .tiles.horizontal .tile,
+.wFormContainer .choices.horizontal .oneChoice {
 	width: calc(50% - var(--grid-gap) / 2);
 	min-height: 6.875em;
 }
 
-.mercerForm .tiles input[type="radio"], 
-.mercerForm .tiles input[type="checkbox"] {	
+.wFormContainer .tiles input[type="radio"], 
+.wFormContainer .tiles input[type="checkbox"],
+.wFormContainer .choices input[type="radio"],
+.wFormContainer .choices input[type="checkbox"] {	
 	display: block;
 	width: 0;
 	height: 0;
 	overflow: hidden;
 }
-.mercerForm .tiles .tile .label {	
-	background-color: var(--offwhite);
-	box-shadow: inset 0 0 0 1px #999;
-	padding: 1em 0.9em;
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	justify-content: flex-start;
+
+.wFormContainer .tiles .tile .label,
+.wFormContainer .choices .oneChoice .label {	
+	background-color: #ffffff;
 	border-radius: 5px;
-	font-size: 0.875em;
-	line-height: 1.2;
-	height: 100%;
-	cursor: pointer;
+	box-shadow: inset 0 0 0 1px var(--grey-500);
+	box-sizing: border-box;
 	color: var(--black);
+	cursor: pointer;
+	display: flex;
+	font-weight: 600;
+	line-height: 1.2;
+	padding: 1em 0.9em;
+	position: relative;
 	transition: var(--transition-fast);
 }
-.mercerForm .tiles .tile .label.singleLine {
+.wFormContainer .tiles.horizontal .tile .label,
+.wFormContainer .choices.horizontal .oneChoice .label {
+	text-align: center;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+	margin: 0;
+}
+.wFormContainer .tiles .tile .label.justify-start {
+	justify-content: flex-start;
+}
+.wFormContainer .tiles .tile .label.singleLine,
+.wFormContainer .choices .oneChoice .label.singleLine {
 	justify-content: center;
 }
 
-.mercerForm .tiles .tile .label:active {
-	transform: scale(0.96);
+.wFormContainer .tiles .tile .label:active,
+.wFormContainer .choices .oneChoice .label:active {
+	transform: scale(0.98);
 }
 
-.mercerForm .tiles .tile .label:hover {
+.wFormContainer .tiles .tile .label:hover,
+.wFormContainer .choices .oneChoice .label:hover {
 	box-shadow: inset 0 0 0 1px var(--raspberry);
 	color: var(--raspberry);
 }
 
-.mercerForm .tiles .tile input:focus + .label,
-.mercerForm .tiles .tile input:is(:checked) + .label {
-	box-shadow: inset 0 0 0 2px var(--raspberry);
+.wFormContainer .tiles .tile input:focus + .label,
+.wFormContainer .tiles .tile input:is(:checked) + .label,
+.wFormContainer .choices .oneChoice input:focus + .label,
+.wFormContainer .choices .oneChoice input:is(:checked) + .label {
+	box-shadow: inset 0 0 0 1px var(--raspberry);
 	color: var(--raspberry);
 }
 
-.mercerForm .tiles .tile input:is(:checked) + .label {
+.wFormContainer .tiles .tile input:is(:checked) + .label,
+.wFormContainer .choices .oneChoice input:is(:checked) + .label {
 	background-color: var(--raspberry-highlight);
 }
 
-.mercerForm .tiles .tile .label .title {	
-	margin: 0 auto;
-	font-size: 1.2em;
-	height: 2.125em;
-	display: flex;
+.wFormContainer .tiles .tile .label .title {	
 	align-items: center;
+	display: flex;
+	height: 2em; 
+	margin: 0 auto;
 }
 
-.mercerForm .tiles .tile .label .icon {	
+.wFormContainer .tiles .tile .label .icon {	
 	margin: 0.75em auto 0.25em;
 	height: 40px;
 }
 
-.mercerForm .tiles .tile .label .text {	
+.wFormContainer .tiles .tile .label .text {	
 	margin: 0.5em auto 0;
+	font-weight: 400;
+}
+
+.wFormContainer .choices.vertical .oneChoice .label .input-radio-faux {
+	width: 1em;
+	height: 1em;
+	border: 1px solid;
+	border-radius: 50%;
+	margin: 0 1em 0 0;
+	transition: all 200ms ease-out;
+	box-shadow: inset 0 0 0 1em white;
+	background: var(--raspberry);
+}
+.wFormContainer .choices.vertical .oneChoice input:is(:checked) + .label .input-radio-faux {
+	background: var(--raspberry);
+	box-shadow: inset 0 0 0 2px white;
 }
 
 @media(min-width: 768px) {
-	.mercerForm .tiles .tile .label { padding: 1.3em 0.9em;	}
-	.mercerForm .tiles .tile .label.square { min-height: 195px; }
-	.mercerForm .tiles .tile .label .icon {	height: 55px; margin: 1em auto 0.5em; }
+	.wFormContainer .tiles .tile .label,
+	.wFormContainer .choices .oneChoice .label { padding: 1.3em 0.9em;	}
+	.wFormContainer .tiles .tile .label.square { min-height: 195px; }
+	.wFormContainer .tiles .tile .label .icon {	height: 55px; margin: 1em auto 0.5em; }
 }
 
 /* Buttons --------------------- */
 
-.mercerForm .wfPagingButtons {
+.wFormContainer .wfPagingButtons {
 	display: flex;
 	column-gap: var(--grid-gap);
 	margin-top: 2.25em;
 }
 
-.mercerForm .actions.multipage {
+.wFormContainer .actions {
+    border: 0;
+    padding: 0;
+		margin: 0;
+}
+.wFormContainer .actions.multipage {
 	display: none;
 }
 
-.mercerForm button,
-.mercerForm input[type="button"],
-.mercerForm input[type="submit"],
-.mercerForm .actions .primaryAction {
+.wFormContainer button,
+.wFormContainer input[type="button"],
+.wFormContainer input[type="submit"],
+.wFormContainer .actions .primaryAction {
   appearance: none;
-	font-weight: bold;
+	font-family: var(--primary-font);
 	font-size: var(--button-font-size);
+	font-weight: 500;
 	background-color: var(--raspberry);
 	color: #fff;
+	cursor: pointer;
 	padding: var(--button-padding);
 	border-radius: var(--button-border-radius);
 	border: 2px solid var(--raspberry);
@@ -468,42 +561,42 @@
 	margin: 0;
 }
 
-.mercerForm button[disabled],
-.mercerForm input[type="button"][disabled],
-.mercerForm input[type="submit"][disabled] {
+.wFormContainer button[disabled],
+.wFormContainer input[type="button"][disabled],
+.wFormContainer input[type="submit"][disabled] {
 	background-color: var(--grey-600);
 	border: 2px solid var(--grey-600);
 	opacity: 0.7;
 	pointer-events: none;
 }
 
-.mercerForm button:hover,
-.mercerForm input[type="button"]:hover,
-.mercerForm input[type="submit"]:hover,
-.mercerForm .actions .primaryAction:hover {
+.wFormContainer button:hover,
+.wFormContainer input[type="button"]:hover,
+.wFormContainer input[type="submit"]:hover,
+.wFormContainer .actions .primaryAction:hover {
 	background-color: var(--raspberry-dark);
 	border: 2px solid var(--raspberry-dark);
 	color: #fff;
 }
 
-.mercerForm button:focus, 
-.mercerForm input[type="button"]:focus, 
-.mercerForm input[type="submit"]:focus, 
-.mercerForm .actions .primaryAction:focus {
+.wFormContainer button:focus, 
+.wFormContainer input[type="button"]:focus, 
+.wFormContainer input[type="submit"]:focus, 
+.wFormContainer .actions .primaryAction:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 4px var(--raspberry);
 }
 
-.mercerForm button.outline,
-.mercerForm input[type="button"].outline,
-.mercerForm input[type="submit"].outline {
+.wFormContainer button.outline,
+.wFormContainer input[type="button"].outline,
+.wFormContainer input[type="submit"].outline {
 	color: var(--raspberry);
 	background-color: transparent;
 	border: 2px solid var(--raspberry);
 }
 
-.mercerForm button.outline:hover,
-.mercerForm input[type="button"].outline:hover,
-.mercerForm input[type="submit"].outline:hover {
+.wFormContainer button.outline:hover,
+.wFormContainer input[type="button"].outline:hover,
+.wFormContainer input[type="submit"].outline:hover {
 	background-color: var(--raspberry-highlight);
 	border: 2px solid var(--raspberry);
 }

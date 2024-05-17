@@ -84,7 +84,7 @@
 		
 		initPages() {
 			let tallestPage
-			if ( window.innerWidth > 767 ) {
+			if ( window.innerWidth > 1024 ) {
 				tallestPage = this.pages.entries().reduce((maxHeight, page) => Math.max(maxHeight || 0, page[1].offsetHeight) )
 			}
 			this.pages.forEach( page => new Page(page, tallestPage) )
